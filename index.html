@@ -10,6 +10,31 @@
 </head>
 <body>
   <div class="wrapper">
+    <header class="header" role="banner">
+      <div class="brand">
+        <img src="images/logo.jpg" alt="AuthMaster logo" style="height:48px">
+        <div class="brand__title"> AuthMaster — учебный проект</div>
+      </div>
+
+      <nav class="header__nav" role="navigation" aria-label="Главная навигация">
+        <a href="index.html">Главная</a>
+        <a href="about.html">О проекте</a>
+        <a href="jwt.html">JWT</a>
+        <a href="oauth.html">OAuth 2.0</a>
+        <a href="install.html">Установка</a>
+        <a href="api.html">API</a>
+        <a href="docs.html">Документация</a>
+        <a href="contact.html">Контакты</a>
+      </nav>
+
+      <button class="burger" aria-label="Открыть меню" aria-expanded="false">
+        <span class="burger__box" aria-hidden="true">
+          <span class="burger__bar"></span>
+          <span class="burger__bar"></span>
+          <span class="burger__bar"></span>
+        </span>
+      </button>
+    </header>
   </div>
   <script src="js/main.js" defer></script>
 </body>
