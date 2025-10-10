@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AuthMaster — OAuth 2.0</title>
+  <link rel="icon" href="images/favicon.jpg">
+  <script src="https://cdn.jsdelivr.net/npm/windicss-runtime@3.1.0/dist/windicss-runtime.min.js" defer></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header" role="banner">
+      <div class="brand">
+        <img src="images/logo.jpg" alt="AuthMaster logo" style="height:48px">
+        <div class="brand__title"> AuthMaster — учебный проект</div>
+      </div>
+
+      <nav class="header__nav" role="navigation" aria-label="Главная навигация">
+        <a href="index.html">Главная</a>
+        <a href="jwt.html">JWT</a>
+        <a href="oauth.html" class="active">OAuth 2.0</a>
+        <a href="comparison.html">Сравнение</a>
+        <a href="install.html">Установка</a>
+        <a href="api.html">API</a>
+        <a href="docs.html">Документация</a>
+        <a href="contact.html">Контакты</a>
+      </nav>
+
+      <button class="burger" aria-label="Открыть меню" aria-expanded="false">
+        <span class="burger__box" aria-hidden="true">
+          <span class="burger__bar"></span>
+          <span class="burger__bar"></span>
+          <span class="burger__bar"></span>
+        </span>
+      </button>
+    </header>
+
+   <main class="page" role="main">
+  <div class="main">
+    <section class="card" aria-labelledby="page-title">
+      <h1 id="page-title" class="page-title">OAuth 2.0 — протокол делегированной авторизации</h1>
+      <p>OAuth 2.0 — это отраслевой стандартный протокол для авторизации, который позволяет приложениям получать ограниченный доступ к учетным записям пользователей на HTTP-сервисах. Он работает, делегируя аутентификацию пользователя службе, которая размещает учетную запись пользователя, и разрешая третьим сторонам доступ к этой учетной записи.</p>
+    </section>
+
+    <section class="card" id="video">
+      <h2>Видеообзор OAuth 2.0</h2>
+      <p>Посмотрите это видео, чтобы лучше понять принципы работы OAuth 2.0:</p>
+      
+      <div class="video-container">
+        <div class="video-wrapper">
+          <iframe 
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/CPbvxxslDTU" 
+            title="Объяснение OAuth 2.0 за 5 минут" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="roles">
+      <h2>Роли в OAuth 2.0</h2>
+      
+      <div class="oauth-roles">
+        <div class="role">
+          <h3>Владелец ресурса (Resource Owner)</h3>
+          <p>Пользователь, который может предоставить доступ к своим защищенным ресурсам.</p>
+        </div>
+        
+        <div class="role">
+          <h3>Клиент (Client)</h3>
+          <p>Приложение, которое запрашивает доступ к защищенным ресурсам от имени владельца ресурса.</p>
+        </div>
+        
+        <div class="role">
+          <h3>Сервер авторизации (Authorization Server)</h3>
+          <p>Сервер, который аутентифицирует владельца ресурса и выдает токены доступа клиентам.</p>
+        </div>
+        
+        <div class="role">
+          <h3>Сервер ресурсов (Resource Server)</h3>
+          <p>Сервер, который размещает защищенные ресурсы и принимает токены доступа для предоставления доступа.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="flows">
+      <h2>Потоки авторизации (Grant Types)</h2>
+      
+      <div class="oauth-flows">
+        <div class="flow">
+          <h3>Authorization Code Flow</h3>
+          <p><strong>Использование:</strong> Веб-приложения и мобильные приложения</p>
+          <p><strong>Описание:</strong> Наиболее безопасный поток, который включает перенаправление пользователя на сервер авторизации и получение кода авторизации.</p>
+          <div class="flow-steps">
+            <h4>Шаги:</h4>
+            <ol>
+              <li>Клиент перенаправляет пользователя на сервер авторизации</li>
+              <li>Пользователь аутентифицируется и дает согласие</li>
+              <li>Сервер авторизации перенаправляет обратно с кодом авторизации</li>
+              <li>Клиент обменивает код авторизации на токен доступа</li>
+            </ol>
+          </div>
+        </div>
+        
+        <div class="flow">
+          <h3>Implicit Flow</h3>
+          <p><strong>Использование:</strong> Одностраничные приложения (SPA)</p>
+          <p><strong>Описание:</strong> Упрощенный поток, где токен доступа возвращается непосредственно в ответе на перенаправление.</p>
+          <p class="warning"><strong>Внимание:</strong> Этот поток считается менее безопасным и не рекомендуется для новых приложений.</p>
+        </div>
+        
+        <div class="flow">
+          <h3>Resource Owner Password Credentials</h3>
+          <p><strong>Использование:</strong> Высокодостоверные приложения (например, официальные мобильные приложения)</p>
+          <p><strong>Описание:</strong> Пользователь предоставляет свои учетные данные напрямую приложению, которое обменивает их на токен доступа.</p>
+          <p class="warning"><strong>Внимание:</strong> Используйте только для доверенных клиентов, так как пользовательские учетные данные передаются клиенту.</p>
+        </div>
+        
+        <div class="flow">
+          <h3>Client Credentials Flow</h3>
+          <p><strong>Использование:</strong> Сервер-серверная аутентификация</p>
+          <p><strong>Описание:</strong> Клиент использует свои собственные учетные данные для получения токена доступа, а не действует от имени пользователя.</p>
+        </div>
+        
+        <div class="flow">
+          <h3>Authorization Code with PKCE</h3>
+          <p><strong>Использование:</strong> Мобильные и нативные приложения</p>
+          <p><strong>Описание:</strong> Улучшенная версия Authorization Code Flow с защитой от перехвата кода авторизации.</p>
+          <p><strong>PKCE (Proof Key for Code Exchange)</strong> добавляет дополнительный уровень безопасности для клиентов, которые не могут хранить секрет клиента безопасно.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="tokens">
+      <h2>Токены в OAuth 2.0</h2>
+      
+      <div class="oauth-tokens">
+        <div class="token-type">
+          <h3>Access Token</h3>
+          <p><strong>Назначение:</strong> Предоставляет доступ к защищенным ресурсам</p>
+          <p><strong>Время жизни:</strong> Короткое (минуты/часы)</p>
+          <p><strong>Формат:</strong> Может быть непрозрачной строкой или JWT</p>
+          <p><strong>Передача:</strong> В заголовке Authorization: Bearer</p>
+        </div>
+        
+        <div class="token-type">
+          <h3>Refresh Token</h3>
+          <p><strong>Назначение:</strong> Получение нового access token без повторной аутентификации</p>
+          <p><strong>Время жизни:</strong> Длительное (дни/недели/месяцы)</p>
+          <p><strong>Хранение:</strong> Безопасно на стороне клиента</p>
+          <p><strong>Безопасность:</strong> Может быть отозван сервером авторизации</p>
+        </div>
+        
+        <div class="token-type">
+          <h3>ID Token</h3>
+          <p><strong>Назначение:</strong> Содержит информацию о пользователе (в OpenID Connect)</p>
+          <p><strong>Формат:</strong> Всегда JWT</p>
+          <p><strong>Использование:</strong> Аутентификация пользователя на стороне клиента</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="implementation">
+      <h2>Реализация OAuth 2.0 в приложениях</h2>
+      
+      <div class="implementation-steps">
+        <div class="step">
+          <h3>1. Регистрация приложения</h3>
+          <p>Перед использованием OAuth 2.0 необходимо зарегистрировать приложение у провайдера:</p>
+          <pre><code>// Пример данных для регистрации
+{
+  "client_id": "ваш_идентификатор_клиента",
+  "client_secret": "ваш_секрет_клиента", // для конфиденциальных клиентов
+  "redirect_uris": ["https://ваш-сайт.com/auth/callback"],
+  "scope": "read write profile email"
+}</code></pre>
+        </div>
+        
+        <div class="step">
+          <h3>2. Инициирование потока авторизации</h3>
+          <p>Перенаправление пользователя на сервер авторизации:</p>
+          <pre><code>// Формирование URL для авторизации
+const authUrl = new URL('https://authorization-server.com/authorize');
+authUrl.searchParams.set('response_type', 'code');
+authUrl.searchParams.set('client_id', CLIENT_ID);
+authUrl.searchParams.set('redirect_uri', REDIRECT_URI);
+authUrl.searchParams.set('scope', 'read write');
+authUrl.searchParams.set('state', generateRandomString()); // CSRF защита
+
+// Перенаправление пользователя
+window.location.href = authUrl.toString();</code></pre>
+        </div>
+        
+        <div class="step">
+          <h3>3. Обработка callback</h3>
+          <p>Получение кода авторизации и обмен на токен доступа:</p>
+          <pre><code>// На стороне сервера
+app.get('/auth/callback', async (req, res) => {
+  const { code, state } = req.query;
+  
+  // Проверка state для защиты от CSRF
+  if (state !== req.session.oauthState) {
+    return res.status(400).send('Invalid state parameter');
+  }
+  
+  // Обмен кода на токен
+  const tokenResponse = await fetch('https://authorization-server.com/token', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams({
+      grant_type: 'authorization_code',
+      code: code,
+      redirect_uri: REDIRECT_URI,
+      client_id: CLIENT_ID,
+      client_secret: CLIENT_SECRET,
+    }),
+  });
+  
+  const tokens = await tokenResponse.json();
+  // Сохранение токенов
+  req.session.accessToken = tokens.access_token;
+  req.session.refreshToken = tokens.refresh_token;
+  
+  res.redirect('/dashboard');
+});</code></pre>
+        </div>
+        
+        <div class="step">
+          <h3>4. Использование токена доступа</h3>
+          <p>Использование токена для доступа к защищенным ресурсам:</p>
+          <pre><code>// Запрос к API с токеном доступа
+const userResponse = await fetch('https://api.resource-server.com/user', {
+  headers: {
+    'Authorization': `Bearer ${accessToken}`
+  }
+});
+
+const userData = await userResponse.json();</code></pre>
+        </div>
+        
+        <div class="step">
+          <h3>5. Обновление токена доступа</h3>
+          <p>Использование refresh token для получения нового access token:</p>
+          <pre><code>// Обновление токена
+const refreshResponse = await fetch('https://authorization-server.com/token', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
+  body: new URLSearchParams({
+    grant_type: 'refresh_token',
+    refresh_token: refreshToken,
+    client_id: CLIENT_ID,
+    client_secret: CLIENT_SECRET,
+  }),
+});
+
+const newTokens = await refreshResponse.json();</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="providers">
+      <h2>Популярные провайдеры OAuth 2.0</h2>
+      
+      <div class="oauth-providers">
+        <div class="provider">
+          <h3>Google</h3>
+          <p><strong>Документация:</strong> <a href="https://developers.google.com/identity/protocols/oauth2" target="_blank">Google OAuth 2.0</a></p>
+          <p><strong>Конечные точки:</strong></p>
+          <ul>
+            <li>Авторизация: https://accounts.google.com/o/oauth2/v2/auth</li>
+            <li>Токен: https://oauth2.googleapis.com/token</li>
+          </ul>
+          <p><strong>Области (scopes):</strong> profile, email, openid, и специфичные для API Google</p>
+        </div>
+        
+        <div class="provider">
+          <h3>Facebook</h3>
+          <p><strong>Документация:</strong> <a href="https://developers.facebook.com/docs/facebook-login/" target="_blank">Facebook Login</a></p>
+          <p><strong>Конечные точки:</strong></p>
+          <ul>
+            <li>Авторизация: https://www.facebook.com/v12.0/dialog/oauth</li>
+            <li>Токен: https://graph.facebook.com/v12.0/oauth/access_token</li>
+          </ul>
+          <p><strong>Области (scopes):</strong> email, public_profile, user_friends и другие</p>
+        </div>
+        
+        <div class="provider">
+          <h3>GitHub</h3>
+          <p><strong>Документация:</strong> <a href="https://docs.github.com/en/developers/apps/building-oauth-apps" target="_blank">GitHub OAuth Apps</a></p>
+          <p><strong>Конечные точки:</strong></p>
+          <ul>
+            <li>Авторизация: https://github.com/login/oauth/authorize</li>
+            <li>Токен: https://github.com/login/oauth/access_token</li>
+          </ul>
+          <p><strong>Области (scopes):</strong> user, user:email, repo и другие</p>
+        </div>
+        
+        <div class="provider">
+          <h3>Microsoft</h3>
+          <p><strong>Документация:</strong> <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow" target="_blank">Microsoft Identity Platform</a></p>
+          <p><strong>Конечные точки:</strong></p>
+          <ul>
+            <li>Авторизация: https://login.microsoftonline.com/common/oauth2/v2.0/authorize</li>
+            <li>Токен: https://login.microsoftonline.com/common/oauth2/v2.0/token</li>
+          </ul>
+          <p><strong>Области (scopes):</strong> User.Read, Mail.Read, и другие</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>OpenID Connect (OIDC)</h2>
+      <p>OpenID Connect — это слой идентификации, построенный поверх OAuth 2.0. Он добавляет возможность аутентификации пользователя и получения информации о нем в стандартизированном формате.</p>
+      
+      <div class="oidc-features">
+        <div class="oidc-feature">
+          <h3>ID Token</h3>
+          <p>JWT токен, содержащий информацию о пользователе (claims).</p>
+        </div>
+        
+        <div class="oidc-feature">
+          <h3>UserInfo Endpoint</h3>
+          <p>Конечная точка для получения дополнительной информации о пользователе.</p>
+        </div>
+        
+        <div class="oidc-feature">
+          <h3>Стандартизированные claims</h3>
+          <p>sub, name, email, picture и другие стандартные поля.</p>
+        </div>
+        
+        <div class="oidc-feature">
+          <h3>Discovery</h3>
+          <p>Автоматическое обнаружение конечных точек через /.well-known/openid-configuration.</p>
+        </div>
+      </div>
+      
+      <div class="oidc-flow">
+        <h3>Поток OAuth 2.0 + OpenID Connect:</h3>
+        <ol>
+          <li>Клиент перенаправляет пользователя на сервер авторизации с scope=openid</li>
+          <li>Пользователь аутентифицируется и дает согласие</li>
+          <li>Сервер авторизации возвращает код авторизации</li>
+          <li>Клиент обменивает код на access token и ID token</li>
+          <li>Клиент может использовать ID token для аутентификации пользователя</li>
+          <li>Клиент может запросить дополнительную информацию через UserInfo endpoint</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Безопасность OAuth 2.0</h2>
+      
+      <div class="security-considerations">
+        <div class="security-item">
+          <h3>CSRF Protection</h3>
+          <p>Всегда используйте параметр state для защиты от атак подделки межсайтовых запросов.</p>
+        </div>
+        
+        <div class="security-item">
+          <h3>PKCE для нативных приложений</h3>
+          <p>Используйте Proof Key for Code Exchange для клиентов, которые не могут безопасно хранить секрет клиента.</p>
+        </div>
+        
+        <div class="security-item">
+          <h3>Валидация redirect_uri</h3>
+          <p>Сервер авторизации должен строго проверять redirect_uri на соответствие зарегистрированным URI.</p>
+        </div>
+        
+        <div class="security-item">
+          <h3>Scope ограничения</h3>
+          <p>Запрашивайте только необходимые области доступа и объясняйте пользователю, для чего они нужны.</p>
+        </div>
+        
+        <div class="security-item">
+          <h3>HTTPS</h3>
+          <p>Всегда используйте HTTPS для всех коммуникаций OAuth 2.0.</p>
+        </div>
+        
+        <div class="security-item">
+          <h3>Хранение токенов</h3>
+          <p>Храните refresh tokens безопасно и используйте короткое время жизни для access tokens.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Библиотеки для работы с OAuth 2.0</h2>
+      
+      <div class="libraries">
+        <div class="library">
+          <h3>Node.js</h3>
+          <ul>
+            <li><strong>passport</strong> — популярная библиотека аутентификации с стратегиями OAuth</li>
+            <li><strong>openid-client</strong> — клиентская библиотека для OpenID Connect</li>
+            <li><strong>simple-oauth2</strong> — простая библиотека для OAuth 2.0</li>
+          </ul>
+        </div>
+        
+        <div class="library">
+          <h3>Python</h3>
+          <ul>
+            <li><strong>Authlib</strong> — всеобъемлющая библиотека для OAuth и OpenID Connect</li>
+            <li><strong>requests-oauthlib</strong> — OAuth для библиотеки requests</li>
+          </ul>
+        </div>
+        
+        <div class="library">
+          <h3>Java</h3>
+          <ul>
+            <li><strong>Spring Security OAuth</strong> — поддержка OAuth в Spring Security</li>
+            <li><strong>pac4j</strong> — универсальная библиотека безопасности</li>
+          </ul>
+        </div>
+        
+        <div class="library">
+          <h3>.NET</h3>
+          <ul>
+            <li><strong>Microsoft.AspNetCore.Authentication</strong> — встроенная поддержка в ASP.NET Core</li>
+            <li><strong>IdentityServer4</strong> — OpenID Connect и OAuth 2.0 фреймворк для .NET</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <aside class="sidebar" role="complementary">
+    <div class="card">
+      <h3>Быстрая навигация</h3>
+      <nav aria-label="Боковая навигация">
+        <ul class="sidebar-nav">
+          <li><a href="#video">Видеообзор</a></li>
+          <li><a href="#roles">Роли в OAuth</a></li>
+          <li><a href="#flows">Потоки авторизации</a></li>
+          <li><a href="#tokens">Токены</a></li>
+          <li><a href="#implementation">Реализация</a></li>
+          <li><a href="#providers">Популярные провайдеры</a></li>
+          <li><a href="security.html#oauth-security">Безопасность OAuth</a></li>
+          <li><a href="comparison.html">Сравнение с JWT</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="card">
+      <h3>Полезные ресурсы</h3>
+      <ul class="resources">
+        <li><a href="https://oauth.net/2/" target="_blank">OAuth.net — официальный сайт</a></li>
+        <li><a href="https://tools.ietf.org/html/rfc6749" target="_blank">RFC 6749 — Спецификация OAuth 2.0</a></li>
+        <li><a href="https://openid.net/connect/" target="_blank">OpenID Connect — официальный сайт</a></li>
+        <li><a href="https://auth0.com/docs/protocols/oauth2" target="_blank">Документация Auth0 по OAuth 2.0</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Практические примеры</h3>
+      <p>Изучите готовые примеры реализации OAuth 2.0 в разделе <a href="install.html">Установка</a>.</p>
+      <a href="install.html" class="button">Перейти к примерам</a>
+    </div>
+  </aside>
+</main>
+   <footer class="footer" role="contentinfo">
+      <div>© 2025 AuthMaster — Учебный проект. Все права защищены.</div>
+    </footer>
+  </div>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
