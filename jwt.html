@@ -1,4 +1,4 @@
-commit  для <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="utf-8">
@@ -41,6 +41,24 @@ commit  для <!DOCTYPE html>
     <section class="card" aria-labelledby="page-title">
       <h1 id="page-title" class="page-title">JSON Web Tokens (JWT)</h1>
       <p>JWT — это открытый стандарт (RFC 7519) для создания токенов доступа, основанный на формате JSON. Эти токены содержат закодированные данные о пользователе и используются для безопасной передачи информации между сторонами.</p>
+    </section>
+
+    <section class="card" id="video">
+      <h2>Видеообзор JWT</h2>
+      <p>Посмотрите это видео, чтобы лучше понять принципы работы JWT:</p>
+      
+      <div class="video-container">
+        <div class="video-wrapper">
+          <iframe 
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/7Q17ubqLfaM" 
+            title="Объяснение JWT за 5 минут" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
     </section>
 
     <section class="card" id="structure">
@@ -113,7 +131,7 @@ commit  для <!DOCTYPE html>
         
         <div class="claims-category">
           <h3>Приватные утверждения</h3>
-          <p>Пользовательские поля, определенные для конкретного случая использования.</p>
+          <p>Пользовательские поля, определены для конкретного случая использования.</p>
         </div>
       </div>
     </section>
@@ -325,6 +343,7 @@ const authMiddleware = (req, res, next) => {
       <h3>Быстрая навигация</h3>
       <nav aria-label="Боковая навигация">
         <ul class="sidebar-nav">
+          <li><a href="#video">Видеообзор</a></li>
           <li><a href="#structure">Структура JWT</a></li>
           <li><a href="#claims">Типы утверждений</a></li>
           <li><a href="#algorithms">Алгоритмы подписи</a></li>
