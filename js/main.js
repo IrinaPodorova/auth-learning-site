@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- БУРГЕР-МЕНЮ ---
   const burger = document.querySelector(".burger");
   const nav = document.querySelector(".header__nav");
 
@@ -9,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
       burger.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
 
-    // Закрываем меню при клике на ссылку (на мобилке)
     nav.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {
         nav.classList.remove("open");
@@ -18,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- ФОРМА ПОДПИСКИ (демо) ---
   const form = document.querySelector(".subscribe-form[data-demo]");
   if (form) {
     form.addEventListener("submit", e => {
@@ -31,13 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Простая имитация "успешной подписки"
       alert(`Спасибо за подписку, ${email}! ✅`);
       form.reset();
     });
   }
 
-  // --- Активация текущего пункта меню ---
   const currentPage = window.location.pathname.split("/").pop();
   document.querySelectorAll(".header__nav a").forEach(link => {
     if (link.getAttribute("href") === currentPage) {
