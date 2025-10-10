@@ -42,6 +42,51 @@
           <h1 id="page-title" class="page-title">JSON Web Tokens (JWT)</h1>
           <p>JWT — это открытый стандарт (RFC 7519) для создания токенов доступа, основанный на формате JSON. Эти токены содержат закодированные данные о пользователе и используются для безопасной передачи информации между сторонами.</p>
         </section>
+
+        <section class="card" id="structure">
+          <h2>Структура JWT токена</h2>
+          <p>JWT состоит из трех частей, разделенных точками:</p>
+          
+          <div class="jwt-structure">
+            <div class="jwt-part">
+              <h3>Header (Заголовок)</h3>
+              <p>Содержит метаданные о токене — тип токена и алгоритм подписи.</p>
+              <pre><code>{
+  "alg": "HS256",
+  "typ": "JWT"
+}</code></pre>
+            </div>
+            
+            <div class="jwt-part">
+              <h3>Payload (Полезная нагрузка)</h3>
+              <p>Содержит утверждения (claims) — данные о пользователе и дополнительную информацию.</p>
+              <pre><code>{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "iat": 1516239022
+}</code></pre>
+            </div>
+            
+            <div class="jwt-part">
+              <h3>Signature (Подпись)</h3>
+              <p>Проверяет целостность токена. Создается путем кодирования header и payload с использованием секретного ключа.</p>
+              <pre><code>HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  secret
+)</code></pre>
+            </div>
+          </div>
+          
+          <div class="jwt-example">
+            <h3>Пример полного JWT токена:</h3>
+            <div class="token-example">
+              <span class="token-header">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span>.
+              <span class="token-payload">eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ</span>.
+              <span class="token-signature">SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</span>
+            </div>
+          </div>
+        </section>
       </div>
 
       <aside class="sidebar" role="complementary">
