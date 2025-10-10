@@ -87,6 +87,52 @@
             </div>
           </div>
         </section>
+
+        <section class="card" id="claims">
+          <h2>Типы утверждений (Claims) в JWT</h2>
+          
+          <div class="claims-types">
+            <div class="claims-category">
+              <h3>Зарегистрированные утверждения</h3>
+              <p>Стандартные поля, определенные в спецификации JWT:</p>
+              <ul>
+                <li><strong>iss (Issuer)</strong> — эмитент токена</li>
+                <li><strong>sub (Subject)</strong> — субъект токена (обычно ID пользователя)</li>
+                <li><strong>aud (Audience)</strong> — получатель токена</li>
+                <li><strong>exp (Expiration Time)</strong> — время истечения срока действия</li>
+                <li><strong>nbf (Not Before)</strong> — время, с которого токен становится валидным</li>
+                <li><strong>iat (Issued At)</strong> — время создания токена</li>
+                <li><strong>jti (JWT ID)</strong> — уникальный идентификатор токена</li>
+              </ul>
+            </div>
+            
+            <div class="claims-category">
+              <h3>Публичные утверждения</h3>
+              <p>Могут быть определены по соглашению между сторонами. Должны быть зарегистрированы в IANA JSON Web Token Registry или использовать устойчивые к коллизиям имена.</p>
+              <p><strong>Примеры:</strong></p>
+              <ul>
+                <li>email — email пользователя</li>
+                <li>name — полное имя</li>
+                <li>picture — URL аватара</li>
+              </ul>
+            </div>
+            
+            <div class="claims-category">
+              <h3>Приватные утверждения</h3>
+              <p>Пользовательские поля, определенные для конкретного случая использования.</p>
+              <p><strong>Примеры:</strong></p>
+              <ul>
+                <li>user_role — роль пользователя в системе</li>
+                <li>preferences — настройки пользователя</li>
+                <li>permissions — права доступа</li>
+              </ul>
+              <pre><code>{
+  "user_role": "admin",
+  "permissions": ["read", "write", "delete"]
+}</code></pre>
+            </div>
+          </div>
+        </section>
       </div>
 
       <aside class="sidebar" role="complementary">
