@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AuthMaster — Установка</title>
+  <link rel="icon" href="images/favicon.jpg">
+  <script src="https://cdn.jsdelivr.net/npm/windicss-runtime@3.1.0/dist/windicss-runtime.min.js" defer></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header" role="banner">
+      <div class="brand">
+        <img src="images/logo.jpg" alt="AuthMaster logo" style="height:48px">
+        <div class="brand__title"> AuthMaster — учебный проект</div>
+      </div>
+
+      <nav class="header__nav" role="navigation" aria-label="Главная навигация">
+        <a href="index.html">Главная</a>
+        <a href="jwt.html">JWT</a>
+        <a href="oauth.html">OAuth 2.0</a>
+        <a href="comparison.html">Сравнение</a>
+        <a href="install.html" class="active">Установка</a>
+        <a href="api.html">API</a>
+        <a href="docs.html">Документация</a>
+        <a href="contact.html">Контакты</a>
+      </nav>
+
+      <button class="burger" aria-label="Открыть меню" aria-expanded="false">
+        <span class="burger__box" aria-hidden="true">
+          <span class="burger__bar"></span>
+          <span class="burger__bar"></span>
+          <span class="burger__bar"></span>
+        </span>
+      </button>
+    </header>
+
+    <main class="page" role="main">
+      <div class="main">
+        <section class="card" aria-labelledby="page-title">
+          <h1 id="page-title" class="page-title">Установка и настройка аутентификации</h1>
+          <p>В этом разделе вы найдете пошаговые инструкции и примеры кода для реализации JWT и OAuth 2.0 в ваших проектах. Мы рассмотрим настройку серверной и клиентской частей для популярных языков программирования и фреймворков.</p>
+        </section>
+
+        <section class="card" id="jwt-install">
+          <h2>Настройка JWT</h2>
+          <p>Для реализации JWT мы будем использовать популярные библиотеки для разных языков программирования. Ниже приведены примеры для Node.js, Python и Java.</p>
+
+          <div class="jwt-installation">
+            <div class="install-step">
+              <h3>1. Node.js (jsonwebtoken)</h3>
+              <p>Установите библиотеку <code>jsonwebtoken</code> и настройте сервер для создания и проверки JWT.</p>
+              <pre><code># Установка библиотеки
+npm install jsonwebtoken</code></pre>
+              <p>Пример серверного кода:</p>
+              <pre><code>// server.js
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const app = express();
+
+app.use(express.json());
+
+const JWT_SECRET = 'your-secret-key'; // Храните в переменных окружения
+
+// Эндпоинт для аутентификации
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  // Проверка учетных данных (пример)
+  if (username === 'user' && password === 'pass') {
+    const token = jwt.sign({ username, role: 'user' }, JWT_SECRET, { expiresIn: '1h' });
+    res.json({ token });
+  } else {
+    res.status(401).json({ message: 'Неверные учетные данные' });
+  }
+});
+
+// Защищенный эндпоинт
+app.get('/protected', (req, res) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    res.json({ message: 'Доступ разрешен', user: decoded });
+  } catch (error) {
+    res.status(401).json({ message: 'Неверный токен' });
+  }
+});
+
+app.listen(3000, () => console.log('Сервер запущен на порту 3000'));
+</code></pre>
+              <p>Храните JWT в HTTP-only cookies для повышения безопасности.</p>
+            </div>
+
+            <div class="install-step">
+              <h3>2. Python (PyJWT)</h3>
+              <p>Установите библиотеку <code>PyJWT</code> и настройте сервер с помощью Flask.</p>
+              <pre><code># Установка библиотеки
+pip install PyJWT</code></pre>
+              <p>Пример серверного кода:</p>
+              <pre><code># app.py
+from flask import Flask, request, jsonify
+import jwt
+
+app = Flask(__name__)
+JWT_SECRET = 'your-secret-key'  # Храните в переменных окружения
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username, password = data.get('username'), data.get('password')
+    if username == 'user' and password == 'pass':
+        token = jwt.encode({'username': username, 'role': 'user'}, JWT_SECRET, algorithm='HS256')
+        return jsonify({'token': token})
+    return jsonify({'message': 'Неверные учетные данные'}), 401
+
+@app.route('/protected', methods=['GET'])
+def protected():
+    token = request.headers.get('Authorization', '').split(' ')[1]
+    try:
+        decoded = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
+        return jsonify({'message': 'Доступ разрешен', 'user': decoded})
+    except jwt.InvalidTokenError:
+        return jsonify({'message': 'Неверный токен'}), 401
+
+if __name__ == '__main__':
+    app.run(port=3000)
+</code></pre>
+            </div>
+
+            <div class="install-step">
+              <h3>3. Клиентская часть (JavaScript)</h3>
+              <p>Пример отправки запросов с JWT на клиентской стороне:</p>
+              <pre><code>// client.js
+async function login() {
+  const response = await fetch('/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username: 'user', password: 'pass' })
+  });
+  const data = await response.json();
+  if (data.token) {
+    document.cookie = `token=${data.token}; HttpOnly; Secure`;
+  }
+}
+
+async function accessProtected() {
+  const token = document.cookie.split('=')[1]; // Для примера, лучше использовать безопасное хранение
+  const response = await fetch('/protected', {
+    headers: { 'Authorization': `Bearer ${token}` }
+  });
+  const data = await response.json();
+  console.log(data);
+}
+</code></pre>
+              <p>Для SPA рекомендуется использовать библиотеки, такие как Axios, для упрощения работы с HTTP-запросами.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="oauth-install">
+          <h2>Настройка OAuth 2.0</h2>
+          <p>Для реализации OAuth 2.0 мы рассмотрим интеграцию с Google OAuth и использование библиотек для упрощения процесса.</p>
+
+          <div class="oauth-installation">
+            <div class="install-step">
+              <h3>1. Регистрация приложения в Google</h3>
+              <p>Перейдите в <a href="https://console.developers.google.com" target="_blank">Google Cloud Console</a>, создайте проект и настройте OAuth 2.0:</p>
+              <ul>
+                <li>Создайте учетные данные OAuth 2.0 Client ID.</li>
+                <li>Укажите redirect URI, например, <code>http://localhost:3000/auth/callback</code>.</li>
+                <li>Получите <code>client_id</code> и <code>client_secret</code>.</li>
+              </ul>
+            </div>
+
+            <div class="install-step">
+              <h3>2. Node.js (passport-google-oauth20)</h3>
+              <p>Используйте библиотеку <code>passport</code> с модулем <code>passport-google-oauth20</code>.</p>
+              <pre><code># Установка библиотек
+npm install passport passport-google-oauth20 express-session</code></pre>
+              <p>Пример серверного кода:</p>
+              <pre><code>// server.js
+const express = require('express');
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const session = require('express-session');
+
+const app = express();
+
+app.use(session({ secret: 'your-session-secret', resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new GoogleStrategy({
+    clientID: 'your-client-id',
+    clientSecret: 'your-client-secret',
+    callbackURL: 'http://localhost:3000/auth/google/callback'
+  },
+  (accessToken, refreshToken, profile, done) => {
+    // Сохранение данных пользователя в базе данных (пример)
+    return done(null, profile);
+  }
+));
+
+passport.serializeUser((user, done) => done(null, user));
+passport.deserializeUser((user, done) => done(null, user));
+
+// Маршруты
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/' }),
+  (req, res) => {
+    res.redirect('/dashboard');
+  }
+);
+
+app.get('/dashboard', (req, res) => {
+  if (!req.user) {
+    return res.redirect('/');
+  }
+  res.json({ user: req.user });
+});
+
+app.listen(3000, () => console.log('Сервер запущен на порту 3000'));
+</code></pre>
+            </div>
+
+            <div class="install-step">
+              <h3>3. Python (Authlib)</h3>
+              <p>Используйте библиотеку <code>Authlib</code> для реализации OAuth 2.0.</p>
+              <pre><code># Установка библиотеки
+pip install Authlib Flask</code></pre>
+              <p>Пример серверного кода:</p>
+              <pre><code># app.py
+from flask import Flask, redirect, url_for, session, request
+from authlib.integrations.flask_client import OAuth
+
+app = Flask(__name__)
+app.secret_key = 'your-secret-key'
+
+oauth = OAuth(app)
+google = oauth.register(
+    name='google',
+    client_id='your-client-id',
+    client_secret='your-client-secret',
+    server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
+    client_kwargs={'scope': 'openid email profile'}
+)
+
+@app.route('/')
+def index():
+    return '<a href="/login">Login with Google</a>'
+
+@app.route('/login')
+def login():
+    redirect_uri = url_for('auth', _external=True)
+    return google.authorize_redirect(redirect_uri)
+
+@app.route('/auth')
+def auth():
+    token = google.authorize_access_token()
+    user = google.parse_id_token(token)
+    session['user'] = user
+    return redirect('/dashboard')
+
+@app.route('/dashboard')
+def dashboard():
+    user = session.get('user')
+    if not user:
+        return redirect('/')
+    return jsonify(user)
+
+if __name__ == '__main__':
+    app.run(port=3000)
+</code></pre>
+            </div>
+
+            <div class="install-step">
+              <h3>4. Клиентская часть (JavaScript)</h3>
+              <p>Пример перенаправления пользователя для авторизации:</p>
+              <pre><code>// client.js
+function loginWithGoogle() {
+  window.location.href = '/auth/google'; // Перенаправление на сервер авторизации
+}
+
+async function getUserData() {
+  const response = await fetch('/dashboard');
+  const data = await response.json();
+  console.log('User:', data.user);
+}
+</code></pre>
+              <p>Для SPA используйте библиотеки, такие как <code>axios</code>, или встроенные API браузера для обработки ответов.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Дополнительные рекомендации</h2>
+          <ul class="recommendations">
+            <li><strong>Безопасное хранение секретов:</strong> Используйте переменные окружения для хранения <code>JWT_SECRET</code>, <code>client_id</code>, и <code>client_secret</code>.</li>
+            <li><strong>HTTPS:</strong> Всегда используйте HTTPS для защиты данных в транзите.</li>
+            <li><strong>Обработка ошибок:</strong> Обрабатывайте случаи истечения срока действия токенов и недействительных учетных данных.</li>
+            <li><strong>Логирование:</strong> Настройте логирование для отслеживания попыток аутентификации и ошибок.</li>
+            <li><strong>Тестирование:</strong> Тестируйте интеграцию на локальном сервере перед развертыванием.</li>
+          </ul>
+        </section>
+
+        <section class="card next-steps-section">
+          <h2>Следующие шаги</h2>
+          <div class="next-steps">
+            <div class="step">
+              <h3>Погрузитесь в API</h3>
+              <p>Изучите примеры интеграции аутентификации в API в разделе <a href="api.html">API</a>.</p>
+              <a href="api.html" class="button">Изучить API</a>
+            </div>
+            <div class="step">
+              <h3>Подробная документация</h3>
+              <p>Ознакомьтесь с полной документацией по настройке и использованию в разделе <a href="docs.html">Документация</a>.</p>
+              <a href="docs.html" class="button">Перейти к документации</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="sidebar" role="complementary">
+        <div class="card">
+          <h3>Быстрая навигация</h3>
+          <nav aria-label="Боковая навигация">
+            <ul class="sidebar-nav">
+              <li><a href="#jwt-install">Настройка JWT</a></li>
+              <li><a href="#oauth-install">Настройка OAuth 2.0</a></li>
+              <li><a href="jwt.html#implementation">Реализация JWT</a></li>
+              <li><a href="oauth.html#implementation">Реализация OAuth</a></li>
+              <li><a href="api.html">Работа с API</a></li>
+              <li><a href="docs.html">Документация</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="card">
+          <h3>Полезные ресурсы</h3>
+          <ul class="resources">
+            <li><a href="https://jwt.io/libraries" target="_blank">Библиотеки JWT</a></li>
+            <li><a href="https://oauth.net/code/" target="_blank">Библиотеки OAuth 2.0</a></li>
+            <li><a href="https://developers.google.com/identity" target="_blank">Google Identity</a></li>
+            <li><a href="https://auth0.com/docs" target="_blank">Документация Auth0</a></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Подписка на обновления</h3>
+          <form class="subscribe-form" data-demo>
+            <div class="form-group">
+              <label for="email" class="form-label">Email для уведомлений:</label>
+              <input type="email" id="email" class="input" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" checked>
+                Уведомлять о новых статьях
+              </label>
+            </div>
+            <button type="submit" class="button button-primary">Подписаться</button>
+          </form>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div>© 2025 AuthMaster — Учебный проект. Все права защищены.</div>
+    </footer>
+  </div>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
