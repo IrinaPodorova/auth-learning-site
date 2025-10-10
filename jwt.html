@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AuthMaster — JWT</title>
+  <link rel="icon" href="images/favicon.jpg">
+  <script src="https://cdn.jsdelivr.net/npm/windicss-runtime@3.1.0/dist/windicss-runtime.min.js" defer></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header" role="banner">
+      <div class="brand">
+        <img src="images/logo.jpg" alt="AuthMaster logo" style="height:48px">
+        <div class="brand__title"> AuthMaster — учебный проект</div>
+      </div>
+
+      <nav class="header__nav" role="navigation" aria-label="Главная навигация">
+        <a href="index.html">Главная</a>
+        <a href="jwt.html" class="active">JWT</a>
+        <a href="oauth.html">OAuth 2.0</a>
+        <a href="comparison.html">Сравнение</a>
+        <a href="install.html">Установка</a>
+        <a href="api.html">API</a>
+        <a href="docs.html">Документация</a>
+        <a href="contact.html">Контакты</a>
+      </nav>
+
+      <button class="burger" aria-label="Открыть меню" aria-expanded="false">
+        <span class="burger__box" aria-hidden="true">
+          <span class="burger__bar"></span>
+          <span class="burger__bar"></span>
+          <span class="burger__bar"></span>
+        </span>
+      </button>
+    </header>
+
+    <main class="page" role="main">
+      <div class="main">
+        <section class="card" aria-labelledby="page-title">
+          <h1 id="page-title" class="page-title">JSON Web Tokens (JWT)</h1>
+          <p>JWT — это открытый стандарт (RFC 7519) для создания токенов доступа, основанный на формате JSON. Эти токены содержат закодированные данные о пользователе и используются для безопасной передачи информации между сторонами.</p>
+        </section>
+      </div>
+
+      <aside class="sidebar" role="complementary">
+        <div class="card">
+          <h3>Быстрая навигация</h3>
+          <nav aria-label="Боковая навигация">
+            <ul class="sidebar-nav">
+              <li><a href="#structure">Структура JWT</a></li>
+              <li><a href="#claims">Типы утверждений</a></li>
+              <li><a href="#algorithms">Алгоритмы подписи</a></li>
+              <li><a href="#implementation">Реализация</a></li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div>© 2025 AuthMaster — Учебный проект. Все права защищены.</div>
+    </footer>
+  </div>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
