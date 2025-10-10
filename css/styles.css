@@ -1,6 +1,6 @@
 :root {
   --max-width: 1200px;
-  --accent: #aaeeff;
+  --accent: #49afc9;
   --accent-2: #0d1475;
   --muted: #6b7280;
   --bg: #ffffff;
@@ -270,7 +270,6 @@ select {
   .comparison-table td:first-child {
     width: 140px;
   }
-}
 
   .page {
     grid-template-columns: 1fr 320px;
