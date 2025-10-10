@@ -1,97 +1,103 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AuthMaster — API</title>
-  <link rel="icon" href="images/favicon.jpg">
-  <script src="https://cdn.jsdelivr.net/npm/windicss-runtime@3.1.0/dist/windicss-runtime.min.js" defer></script>
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <div class="wrapper">
-    <header class="header" role="banner">
-      <div class="brand">
-        <img src="images/logo.jpg" alt="AuthMaster logo" style="height:48px">
-        <div class="brand__title"> AuthMaster — учебный проект</div>
-      </div>
-
-      <nav class="header__nav" role="navigation" aria-label="Главная навигация">
-        <a href="index.html">Главная</a>
-        <a href="jwt.html">JWT</a>
-        <a href="oauth.html">OAuth 2.0</a>
-        <a href="comparison.html">Сравнение</a>
-        <a href="install.html">Установка</a>
-        <a href="api.html" class="active">API</a>
-        <a href="docs.html">Документация</a>
-        <a href="contact.html">Контакты</a>
-      </nav>
-
-      <button class="burger" aria-label="Открыть меню" aria-expanded="false">
-        <span class="burger__box" aria-hidden="true">
-          <span class="burger__bar"></span>
-          <span class="burger__bar"></span>
-          <span class="burger__bar"></span>
-        </span>
-      </button>
-    </header>
-
-   <main class="page" role="main">
-  <div class="main">
-    <section class="card" aria-labelledby="page-title">
-      <h1 id="page-title" class="page-title">API Reference</h1>
-      <p>Документация по REST API для работы с аутентификацией и авторизацией. Все запросы должны содержать заголовок <code>Content-Type: application/json</code>.</p>
-    </section>
-
-    <section class="card" id="authentication">
-      <h2>Аутентификация API</h2>
-      <p>Для доступа к защищенным эндпоинтам необходимо передавать JWT токен в заголовке Authorization:</p>
-      <pre><code>Authorization: Bearer {your_jwt_token}</code></pre>
-      
-      <div class="api-info">
-        <div class="info-item">
-          <h3>Базовый URL</h3>
-          <code>https://api.authmaster.example.com/v1</code>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>AuthMaster — API</title>
+    <link rel="icon" href="images/favicon.jpg">
+    <script
+      src="https://cdn.jsdelivr.net/npm/windicss-runtime@3.1.0/dist/windicss-runtime.min.js"
+      defer></script>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header" role="banner">
+        <div class="brand">
+          <img src="images/logo.jpg" alt="AuthMaster logo" style="height:48px">
+          <div class="brand__title"> AuthMaster — учебный проект</div>
         </div>
-        <div class="info-item">
-          <h3>Формат ответа</h3>
-          <p>Все ответы возвращаются в формате JSON</p>
-        </div>
-        <div class="info-item">
-          <h3>Коды статусов</h3>
-          <ul>
-            <li><strong>200</strong> - Успешный запрос</li>
-            <li><strong>201</strong> - Успешное создание</li>
-            <li><strong>400</strong> - Неверный запрос</li>
-            <li><strong>401</strong> - Неавторизованный доступ</li>
-            <li><strong>403</strong> - Доступ запрещен</li>
-            <li><strong>404</strong> - Ресурс не найден</li>
-            <li><strong>500</strong> - Внутренняя ошибка сервера</li>
-          </ul>
-        </div>
-      </div>
-    </section>
 
-    <section class="card" id="auth-endpoints">
-      <h2>Эндпоинты аутентификации</h2>
-      
-      <div class="endpoint">
-        <div class="endpoint-header">
-          <span class="method post">POST</span>
-          <span class="path">/auth/register</span>
-        </div>
-        <div class="endpoint-content">
-          <p><strong>Регистрация нового пользователя</strong></p>
-          
-          <h4>Тело запроса:</h4>
-          <pre><code>{
+        <nav class="header__nav" role="navigation"
+          aria-label="Главная навигация">
+          <a href="index.html">Главная</a>
+          <a href="jwt.html">JWT</a>
+          <a href="oauth.html">OAuth 2.0</a>
+          <a href="comparison.html">Сравнение</a>
+          <a href="install.html">Установка</a>
+          <a href="api.html" class="active">API</a>
+          <a href="docs.html">Документация</a>
+          <a href="contact.html">Контакты</a>
+        </nav>
+
+        <button class="burger" aria-label="Открыть меню" aria-expanded="false">
+          <span class="burger__box" aria-hidden="true">
+            <span class="burger__bar"></span>
+            <span class="burger__bar"></span>
+            <span class="burger__bar"></span>
+          </span>
+        </button>
+      </header>
+
+      <main class="page" role="main">
+        <div class="main">
+          <section class="card" aria-labelledby="page-title">
+            <h1 id="page-title" class="page-title">API Reference</h1>
+            <p>Документация по REST API для работы с аутентификацией и
+              авторизацией. Все запросы должны содержать заголовок
+              <code>Content-Type: application/json</code>.</p>
+          </section>
+
+          <section class="card" id="authentication">
+            <h2>Аутентификация API</h2>
+            <p>Для доступа к защищенным эндпоинтам необходимо передавать JWT
+              токен в заголовке Authorization:</p>
+            <pre><code>Authorization: Bearer {your_jwt_token}</code></pre>
+
+            <div class="api-info">
+              <div class="info-item">
+                <h3>Базовый URL</h3>
+                <code>https://api.authmaster.example.com/v1</code>
+              </div>
+              <div class="info-item">
+                <h3>Формат ответа</h3>
+                <p>Все ответы возвращаются в формате JSON</p>
+              </div>
+              <div class="info-item">
+                <h3>Коды статусов</h3>
+                <ul>
+                  <li><strong>200</strong> - Успешный запрос</li>
+                  <li><strong>201</strong> - Успешное создание</li>
+                  <li><strong>400</strong> - Неверный запрос</li>
+                  <li><strong>401</strong> - Неавторизованный доступ</li>
+                  <li><strong>403</strong> - Доступ запрещен</li>
+                  <li><strong>404</strong> - Ресурс не найден</li>
+                  <li><strong>500</strong> - Внутренняя ошибка сервера</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" id="auth-endpoints">
+            <h2>Эндпоинты аутентификации</h2>
+
+            <div class="endpoint">
+              <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="path">/auth/register</span>
+              </div>
+              <div class="endpoint-content">
+                <p><strong>Регистрация нового пользователя</strong></p>
+
+                <h4>Тело запроса:</h4>
+                <pre><code>{
   "email": "user@example.com",
   "password": "securePassword123",
   "name": "Иван Иванов"
 }</code></pre>
-          
-          <h4>Успешный ответ (201):</h4>
-          <pre><code>{
+
+                <h4>Успешный ответ (201):</h4>
+                <pre><code>{
   "success": true,
   "message": "Пользователь успешно зарегистрирован",
   "user": {
@@ -100,32 +106,33 @@
     "name": "Иван Иванов"
   }
 }</code></pre>
-          
-          <h4>Ошибки:</h4>
-          <ul>
-            <li><strong>400</strong> - Пользователь с таким email уже существует</li>
-            <li><strong>400</strong> - Неверный формат email</li>
-            <li><strong>400</strong> - Слабый пароль</li>
-          </ul>
-        </div>
-      </div>
 
-      <div class="endpoint">
-        <div class="endpoint-header">
-          <span class="method post">POST</span>
-          <span class="path">/auth/login</span>
-        </div>
-        <div class="endpoint-content">
-          <p><strong>Вход пользователя</strong></p>
-          
-          <h4>Тело запроса:</h4>
-          <pre><code>{
+                <h4>Ошибки:</h4>
+                <ul>
+                  <li><strong>400</strong> - Пользователь с таким email уже
+                    существует</li>
+                  <li><strong>400</strong> - Неверный формат email</li>
+                  <li><strong>400</strong> - Слабый пароль</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="endpoint">
+              <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="path">/auth/login</span>
+              </div>
+              <div class="endpoint-content">
+                <p><strong>Вход пользователя</strong></p>
+
+                <h4>Тело запроса:</h4>
+                <pre><code>{
   "email": "user@example.com",
   "password": "securePassword123"
 }</code></pre>
-          
-          <h4>Успешный ответ (200):</h4>
-          <pre><code>{
+
+                <h4>Успешный ответ (200):</h4>
+                <pre><code>{
   "success": true,
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
@@ -136,84 +143,86 @@
     "role": "user"
   }
 }</code></pre>
-          
-          <h4>Ошибки:</h4>
-          <ul>
-            <li><strong>401</strong> - Неверные учетные данные</li>
-            <li><strong>400</strong> - Неверный формат запроса</li>
-          </ul>
-        </div>
-      </div>
 
-      <div class="endpoint">
-        <div class="endpoint-header">
-          <span class="method post">POST</span>
-          <span class="path">/auth/refresh</span>
-        </div>
-        <div class="endpoint-content">
-          <p><strong>Обновление access token</strong></p>
-          
-          <h4>Тело запроса:</h4>
-          <pre><code>{
+                <h4>Ошибки:</h4>
+                <ul>
+                  <li><strong>401</strong> - Неверные учетные данные</li>
+                  <li><strong>400</strong> - Неверный формат запроса</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="endpoint">
+              <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="path">/auth/refresh</span>
+              </div>
+              <div class="endpoint-content">
+                <p><strong>Обновление access token</strong></p>
+
+                <h4>Тело запроса:</h4>
+                <pre><code>{
   "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }</code></pre>
-          
-          <h4>Успешный ответ (200):</h4>
-          <pre><code>{
+
+                <h4>Успешный ответ (200):</h4>
+                <pre><code>{
   "success": true,
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }</code></pre>
-          
-          <h4>Ошибки:</h4>
-          <ul>
-            <li><strong>401</strong> - Неверный или истекший refresh token</li>
-            <li><strong>403</strong> - Refresh token отозван</li>
-          </ul>
-        </div>
-      </div>
 
-      <div class="endpoint">
-        <div class="endpoint-header">
-          <span class="method post">POST</span>
-          <span class="path">/auth/logout</span>
-        </div>
-        <div class="endpoint-content">
-          <p><strong>Выход пользователя</strong></p>
-          
-          <h4>Заголовки:</h4>
-          <pre><code>Authorization: Bearer {access_token}</code></pre>
-          
-          <h4>Тело запроса:</h4>
-          <pre><code>{
+                <h4>Ошибки:</h4>
+                <ul>
+                  <li><strong>401</strong> - Неверный или истекший refresh
+                    token</li>
+                  <li><strong>403</strong> - Refresh token отозван</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="endpoint">
+              <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="path">/auth/logout</span>
+              </div>
+              <div class="endpoint-content">
+                <p><strong>Выход пользователя</strong></p>
+
+                <h4>Заголовки:</h4>
+                <pre><code>Authorization: Bearer {access_token}</code></pre>
+
+                <h4>Тело запроса:</h4>
+                <pre><code>{
   "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }</code></pre>
-          
-          <h4>Успешный ответ (200):</h4>
-          <pre><code>{
+
+                <h4>Успешный ответ (200):</h4>
+                <pre><code>{
   "success": true,
   "message": "Успешный выход из системы"
 }</code></pre>
-        </div>
-      </div>
-    </section>
+              </div>
+            </div>
+          </section>
 
-    <section class="card" id="user-endpoints">
-      <h2>Эндпоинты пользователей</h2>
-      
-      <div class="endpoint">
-        <div class="endpoint-header">
-          <span class="method get">GET</span>
-          <span class="path">/users/me</span>
-        </div>
-        <div class="endpoint-content">
-          <p><strong>Получение информации о текущем пользователе</strong></p>
-          
-          <h4>Заголовки:</h4>
-          <pre><code>Authorization: Bearer {access_token}</code></pre>
-          
-          <h4>Успешный ответ (200):</h4>
-          <pre><code>{
+          <section class="card" id="user-endpoints">
+            <h2>Эндпоинты пользователей</h2>
+
+            <div class="endpoint">
+              <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="path">/users/me</span>
+              </div>
+              <div class="endpoint-content">
+                <p><strong>Получение информации о текущем
+                    пользователе</strong></p>
+
+                <h4>Заголовки:</h4>
+                <pre><code>Authorization: Bearer {access_token}</code></pre>
+
+                <h4>Успешный ответ (200):</h4>
+                <pre><code>{
   "success": true,
   "user": {
     "id": "user_123456",
@@ -224,28 +233,28 @@
     "updatedAt": "2025-01-20T14:45:00Z"
   }
 }</code></pre>
-        </div>
-      </div>
+              </div>
+            </div>
 
-      <div class="endpoint">
-        <div class="endpoint-header">
-          <span class="method put">PUT</span>
-          <span class="path">/users/me</span>
-        </div>
-        <div class="endpoint-content">
-          <p><strong>Обновление информации о пользователе</strong></p>
-          
-          <h4>Заголовки:</h4>
-          <pre><code>Authorization: Bearer {access_token}</code></pre>
-          
-          <h4>Тело запроса:</h4>
-          <pre><code>{
+            <div class="endpoint">
+              <div class="endpoint-header">
+                <span class="method put">PUT</span>
+                <span class="path">/users/me</span>
+              </div>
+              <div class="endpoint-content">
+                <p><strong>Обновление информации о пользователе</strong></p>
+
+                <h4>Заголовки:</h4>
+                <pre><code>Authorization: Bearer {access_token}</code></pre>
+
+                <h4>Тело запроса:</h4>
+                <pre><code>{
   "name": "Новое имя",
   "email": "newemail@example.com"
 }</code></pre>
-          
-          <h4>Успешный ответ (200):</h4>
-          <pre><code>{
+
+                <h4>Успешный ответ (200):</h4>
+                <pre><code>{
   "success": true,
   "message": "Данные пользователя обновлены",
   "user": {
@@ -256,79 +265,81 @@
     "updatedAt": "2025-01-25T09:15:00Z"
   }
 }</code></pre>
-        </div>
-      </div>
+              </div>
+            </div>
 
-      <div class="endpoint">
-        <div class="endpoint-header">
-          <span class="method post">POST</span>
-          <span class="path">/users/change-password</span>
-        </div>
-        <div class="endpoint-content">
-          <p><strong>Смена пароля</strong></p>
-          
-          <h4>Заголовки:</h4>
-          <pre><code>Authorization: Bearer {access_token}</code></pre>
-          
-          <h4>Тело запроса:</h4>
-          <pre><code>{
+            <div class="endpoint">
+              <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="path">/users/change-password</span>
+              </div>
+              <div class="endpoint-content">
+                <p><strong>Смена пароля</strong></p>
+
+                <h4>Заголовки:</h4>
+                <pre><code>Authorization: Bearer {access_token}</code></pre>
+
+                <h4>Тело запроса:</h4>
+                <pre><code>{
   "currentPassword": "oldPassword123",
   "newPassword": "newSecurePassword456"
 }</code></pre>
-          
-          <h4>Успешный ответ (200):</h4>
-          <pre><code>{
+
+                <h4>Успешный ответ (200):</h4>
+                <pre><code>{
   "success": true,
   "message": "Пароль успешно изменен"
 }</code></pre>
-          
-          <h4>Ошибки:</h4>
-          <ul>
-            <li><strong>400</strong> - Неверный текущий пароль</li>
-            <li><strong>400</strong> - Новый пароль слишком слабый</li>
-          </ul>
-        </div>
-      </div>
-    </section>
 
-    <section class="card" id="oauth-endpoints">
-      <h2>Эндпоинты OAuth</h2>
-      
-      <div class="endpoint">
-        <div class="endpoint-header">
-          <span class="method get">GET</span>
-          <span class="path">/oauth/{provider}</span>
-        </div>
-        <div class="endpoint-content">
-          <p><strong>Инициация OAuth аутентификации</strong></p>
-          
-          <h4>Параметры запроса:</h4>
-          <ul>
-            <li><code>provider</code> - Провайдер OAuth (google, github, facebook)</li>
-            <li><code>redirect_uri</code> - URL для перенаправления после аутентификации</li>
-          </ul>
-          
-          <h4>Ответ (302):</h4>
-          <p>Перенаправление на страницу аутентификации провайдера</p>
-        </div>
-      </div>
+                <h4>Ошибки:</h4>
+                <ul>
+                  <li><strong>400</strong> - Неверный текущий пароль</li>
+                  <li><strong>400</strong> - Новый пароль слишком слабый</li>
+                </ul>
+              </div>
+            </div>
+          </section>
 
-      <div class="endpoint">
-        <div class="endpoint-header">
-          <span class="method get">GET</span>
-          <span class="path">/oauth/{provider}/callback</span>
-        </div>
-        <div class="endpoint-content">
-          <p><strong>Callback для OAuth аутентификации</strong></p>
-          
-          <h4>Параметры запроса:</h4>
-          <ul>
-            <li><code>code</code> - Код авторизации от провайдера</li>
-            <li><code>state</code> - CSRF токен</li>
-          </ul>
-          
-          <h4>Успешный ответ (200):</h4>
-          <pre><code>{
+          <section class="card" id="oauth-endpoints">
+            <h2>Эндпоинты OAuth</h2>
+
+            <div class="endpoint">
+              <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="path">/oauth/{provider}</span>
+              </div>
+              <div class="endpoint-content">
+                <p><strong>Инициация OAuth аутентификации</strong></p>
+
+                <h4>Параметры запроса:</h4>
+                <ul>
+                  <li><code>provider</code> - Провайдер OAuth (google, github,
+                    facebook)</li>
+                  <li><code>redirect_uri</code> - URL для перенаправления после
+                    аутентификации</li>
+                </ul>
+
+                <h4>Ответ (302):</h4>
+                <p>Перенаправление на страницу аутентификации провайдера</p>
+              </div>
+            </div>
+
+            <div class="endpoint">
+              <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="path">/oauth/{provider}/callback</span>
+              </div>
+              <div class="endpoint-content">
+                <p><strong>Callback для OAuth аутентификации</strong></p>
+
+                <h4>Параметры запроса:</h4>
+                <ul>
+                  <li><code>code</code> - Код авторизации от провайдера</li>
+                  <li><code>state</code> - CSRF токен</li>
+                </ul>
+
+                <h4>Успешный ответ (200):</h4>
+                <pre><code>{
   "success": true,
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "user": {
@@ -338,34 +349,35 @@
     "provider": "google"
   }
 }</code></pre>
-        </div>
-      </div>
-    </section>
+              </div>
+            </div>
+          </section>
 
-    <section class="card" id="admin-endpoints">
-      <h2>Эндпоинты администратора</h2>
-      <p class="note">Требуются права администратора</p>
-      
-      <div class="endpoint">
-        <div class="endpoint-header">
-          <span class="method get">GET</span>
-          <span class="path">/admin/users</span>
-        </div>
-        <div class="endpoint-content">
-          <p><strong>Получение списка пользователей</strong></p>
-          
-          <h4>Заголовки:</h4>
-          <pre><code>Authorization: Bearer {admin_access_token}</code></pre>
-          
-          <h4>Параметры запроса:</h4>
-          <ul>
-            <li><code>page</code> - Номер страницы (по умолчанию: 1)</li>
-            <li><code>limit</code> - Количество пользователей на странице (по умолчанию: 20)</li>
-            <li><code>search</code> - Поиск по email или имени</li>
-          </ul>
-          
-          <h4>Успешный ответ (200):</h4>
-          <pre><code>{
+          <section class="card" id="admin-endpoints">
+            <h2>Эндпоинты администратора</h2>
+            <p class="note">Требуются права администратора</p>
+
+            <div class="endpoint">
+              <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="path">/admin/users</span>
+              </div>
+              <div class="endpoint-content">
+                <p><strong>Получение списка пользователей</strong></p>
+
+                <h4>Заголовки:</h4>
+                <pre><code>Authorization: Bearer {admin_access_token}</code></pre>
+
+                <h4>Параметры запроса:</h4>
+                <ul>
+                  <li><code>page</code> - Номер страницы (по умолчанию: 1)</li>
+                  <li><code>limit</code> - Количество пользователей на странице
+                    (по умолчанию: 20)</li>
+                  <li><code>search</code> - Поиск по email или имени</li>
+                </ul>
+
+                <h4>Успешный ответ (200):</h4>
+                <pre><code>{
   "success": true,
   "users": [
     {
@@ -384,27 +396,27 @@
     "pages": 8
   }
 }</code></pre>
-        </div>
-      </div>
+              </div>
+            </div>
 
-      <div class="endpoint">
-        <div class="endpoint-header">
-          <span class="method put">PUT</span>
-          <span class="path">/admin/users/{userId}/role</span>
-        </div>
-        <div class="endpoint-content">
-          <p><strong>Изменение роли пользователя</strong></p>
-          
-          <h4>Заголовки:</h4>
-          <pre><code>Authorization: Bearer {admin_access_token}</code></pre>
-          
-          <h4>Тело запроса:</h4>
-          <pre><code>{
+            <div class="endpoint">
+              <div class="endpoint-header">
+                <span class="method put">PUT</span>
+                <span class="path">/admin/users/{userId}/role</span>
+              </div>
+              <div class="endpoint-content">
+                <p><strong>Изменение роли пользователя</strong></p>
+
+                <h4>Заголовки:</h4>
+                <pre><code>Authorization: Bearer {admin_access_token}</code></pre>
+
+                <h4>Тело запроса:</h4>
+                <pre><code>{
   "role": "admin"
 }</code></pre>
-          
-          <h4>Успешный ответ (200):</h4>
-          <pre><code>{
+
+                <h4>Успешный ответ (200):</h4>
+                <pre><code>{
   "success": true,
   "message": "Роль пользователя обновлена",
   "user": {
@@ -413,30 +425,30 @@
     "role": "admin"
   }
 }</code></pre>
-        </div>
-      </div>
-    </section>
+              </div>
+            </div>
+          </section>
 
-    <section class="card" id="testing">
-      <h2>Тестирование API</h2>
-      
-      <div class="testing-info">
-        <h3>Тестовая среда</h3>
-        <p>Для тестирования API используйте тестовый URL:</p>
-        <code>https://sandbox.api.authmaster.example.com/v1</code>
-        
-        <h3>Тестовые данные</h3>
-        <p>Используйте следующие тестовые учетные данные:</p>
-        <pre><code>{
+          <section class="card" id="testing">
+            <h2>Тестирование API</h2>
+
+            <div class="testing-info">
+              <h3>Тестовая среда</h3>
+              <p>Для тестирования API используйте тестовый URL:</p>
+              <code>https://sandbox.api.authmaster.example.com/v1</code>
+
+              <h3>Тестовые данные</h3>
+              <p>Используйте следующие тестовые учетные данные:</p>
+              <pre><code>{
   "email": "test@authmaster.example.com",
   "password": "testPassword123"
 }</code></pre>
-        
-        <h3>Примеры кода</h3>
-        <div class="code-examples">
-          <div class="code-example">
-            <h4>JavaScript (Fetch API)</h4>
-            <pre><code>const login = async (email, password) => {
+
+              <h3>Примеры кода</h3>
+              <div class="code-examples">
+                <div class="code-example">
+                  <h4>JavaScript (Fetch API)</h4>
+                  <pre><code>const login = async (email, password) => {
   const response = await fetch('https://api.authmaster.example.com/v1/auth/login', {
     method: 'POST',
     headers: {
@@ -447,11 +459,11 @@
   
   return await response.json();
 };</code></pre>
-          </div>
-          
-          <div class="code-example">
-            <h4>Python (requests)</h4>
-            <pre><code>import requests
+                </div>
+
+                <div class="code-example">
+                  <h4>Python (requests)</h4>
+                  <pre><code>import requests
 
 def login(email, password):
     response = requests.post(
@@ -459,47 +471,48 @@ def login(email, password):
         json={'email': email, 'password': password}
     )
     return response.json()</code></pre>
-          </div>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
-      </div>
-    </section>
-  </div>
 
-  <aside class="sidebar" role="complementary">
-    <div class="card">
-      <h3>Быстрая навигация</h3>
-      <nav aria-label="Боковая навигация">
-        <ul class="sidebar-nav">
-          <li><a href="#authentication">Аутентификация API</a></li>
-          <li><a href="#auth-endpoints">Эндпоинты аутентификации</a></li>
-          <li><a href="#user-endpoints">Эндпоинты пользователей</a></li>
-          <li><a href="#oauth-endpoints">Эндпоинты OAuth</a></li>
-          <li><a href="#admin-endpoints">Эндпоинты администратора</a></li>
-          <li><a href="#testing">Тестирование API</a></li>
-        </ul>
-      </nav>
-    </div>
+        <aside class="sidebar" role="complementary">
+          <div class="card">
+            <h3>Быстрая навигация</h3>
+            <nav aria-label="Боковая навигация">
+              <ul class="sidebar-nav">
+                <li><a href="#authentication">Аутентификация API</a></li>
+                <li><a href="#auth-endpoints">Эндпоинты аутентификации</a></li>
+                <li><a href="#user-endpoints">Эндпоинты пользователей</a></li>
+                <li><a href="#oauth-endpoints">Эндпоинты OAuth</a></li>
+                <li><a href="#admin-endpoints">Эндпоинты администратора</a></li>
+                <li><a href="#testing">Тестирование API</a></li>
+              </ul>
+            </nav>
+          </div>
 
-    <div class="card">
-      <h3>Полезные ссылки</h3>
-      <ul class="resources">
-        <li><a href="docs.html">Полная документация</a></li>
-        <li><a href="install.html">Примеры установки</a></li>
-        <li><a href="jwt.html">Подробнее о JWT</a></li>
-        <li><a href="oauth.html">Подробнее о OAuth</a></li>
-      </ul>
-    </div>
+          <div class="card">
+            <h3>Полезные ссылки</h3>
+            <ul class="resources">
+              <li><a href="docs.html">Полная документация</a></li>
+              <li><a href="install.html">Примеры установки</a></li>
+              <li><a href="jwt.html">Подробнее о JWT</a></li>
+              <li><a href="oauth.html">Подробнее о OAuth</a></li>
+            </ul>
+          </div>
 
-    <div class="card">
-      <h3>Поддержка</h3>
-      <p>Если у вас есть вопросы по использованию API, обратитесь в раздел <a href="contact.html">Контакты</a>.</p>
+          <div class="card">
+            <h3>Поддержка</h3>
+            <p>Если у вас есть вопросы по использованию API, обратитесь в раздел
+              <a href="contact.html">Контакты</a>.</p>
+          </div>
+        </aside>
+      </main>
+      <footer class="footer" role="contentinfo">
+        <div>© 2025 AuthMaster — Учебный проект. Все права защищены.</div>
+      </footer>
     </div>
-  </aside>
-</main>
-   <footer class="footer" role="contentinfo">
-      <div>© 2025 AuthMaster — Учебный проект. Все права защищены.</div>
-    </footer>
-  </div>
-  <script src="js/main.js" defer></script>
-</body>
+    <script src="js/main.js" defer></script>
+  </body>
 </html>

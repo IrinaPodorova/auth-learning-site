@@ -1,162 +1,189 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AuthMaster — Сравнение JWT и OAuth 2.0</title>
-  <link rel="icon" href="images/favicon.jpg">
-  <script src="https://cdn.jsdelivr.net/npm/windicss-runtime@3.1.0/dist/windicss-runtime.min.js" defer></script>
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <div class="wrapper">
-    <header class="header" role="banner">
-      <div class="brand">
-        <img src="images/logo.jpg" alt="AuthMaster logo" style="height:48px">
-        <div class="brand__title"> AuthMaster — учебный проект</div>
-      </div>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>AuthMaster — Сравнение JWT и OAuth 2.0</title>
+    <link rel="icon" href="images/favicon.jpg">
+    <script
+      src="https://cdn.jsdelivr.net/npm/windicss-runtime@3.1.0/dist/windicss-runtime.min.js"
+      defer></script>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header" role="banner">
+        <div class="brand">
+          <img src="images/logo.jpg" alt="AuthMaster logo" style="height:48px">
+          <div class="brand__title"> AuthMaster — учебный проект</div>
+        </div>
 
-      <nav class="header__nav" role="navigation" aria-label="Главная навигация">
-        <a href="index.html">Главная</a>
-        <a href="jwt.html">JWT</a>
-        <a href="oauth.html">OAuth 2.0</a>
-        <a href="comparison.html" class="active">Сравнение</a>
-        <a href="install.html">Установка</a>
-        <a href="api.html">API</a>
-        <a href="docs.html">Документация</a>
-        <a href="contact.html">Контакты</a>
-      </nav>
+        <nav class="header__nav" role="navigation"
+          aria-label="Главная навигация">
+          <a href="index.html">Главная</a>
+          <a href="jwt.html">JWT</a>
+          <a href="oauth.html">OAuth 2.0</a>
+          <a href="comparison.html" class="active">Сравнение</a>
+          <a href="install.html">Установка</a>
+          <a href="api.html">API</a>
+          <a href="docs.html">Документация</a>
+          <a href="contact.html">Контакты</a>
+        </nav>
 
-      <button class="burger" aria-label="Открыть меню" aria-expanded="false">
-        <span class="burger__box" aria-hidden="true">
-          <span class="burger__bar"></span>
-          <span class="burger__bar"></span>
-          <span class="burger__bar"></span>
-        </span>
-      </button>
-    </header>
+        <button class="burger" aria-label="Открыть меню" aria-expanded="false">
+          <span class="burger__box" aria-hidden="true">
+            <span class="burger__bar"></span>
+            <span class="burger__bar"></span>
+            <span class="burger__bar"></span>
+          </span>
+        </button>
+      </header>
 
-<main class="page" role="main">
-  <div class="main">
-    <section class="card" aria-labelledby="page-title">
-      <h1 id="page-title" class="page-title">Сравнение JWT и OAuth 2.0</h1>
-      <p>JWT и OAuth 2.0 часто используются вместе, но выполняют разные функции. Ниже представлена таблица сравнения, чтобы лучше понять различия и области применения этих технологий.</p>
-    </section>
+      <main class="page" role="main">
+        <div class="main">
+          <section class="card" aria-labelledby="page-title">
+            <h1 id="page-title" class="page-title">Сравнение JWT и OAuth
+              2.0</h1>
+            <p>JWT и OAuth 2.0 часто используются вместе, но выполняют разные
+              функции. Ниже представлена таблица сравнения, чтобы лучше понять
+              различия и области применения этих технологий.</p>
+          </section>
 
-    <section class="card" id="comparison-table">
-      <h2>Основные различия</h2>
+          <section class="card" id="comparison-table">
+            <h2>Основные различия</h2>
 
-      <div class="table-container">
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th>Критерий</th>
-              <th>JWT</th>
-              <th>OAuth 2.0</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Тип технологии</strong></td>
-              <td>Стандарт формата токенов (RFC 7519)</td>
-              <td>Протокол авторизации (RFC 6749)</td>
-            </tr>
-            <tr>
-              <td><strong>Основное назначение</strong></td>
-              <td>Передача и проверка информации о пользователе в виде токена</td>
-              <td>Предоставление сторонним приложениям ограниченного доступа к ресурсам пользователя</td>
-            </tr>
-            <tr>
-              <td><strong>Тип данных</strong></td>
-              <td>JSON-токен, содержащий claims (утверждения)</td>
-              <td>Использует токены (обычно access и refresh), которые могут быть JWT или произвольной строкой</td>
-            </tr>
-            <tr>
-              <td><strong>Аутентификация или авторизация</strong></td>
-              <td>Аутентификация (подтверждение личности)</td>
-              <td>Авторизация (предоставление прав доступа)</td>
-            </tr>
-            <tr>
-              <td><strong>Использование</strong></td>
-              <td>Внутренняя авторизация и обмен данными между сервисами</td>
-              <td>Доступ к сторонним API (Google, GitHub, Facebook и т.д.)</td>
-            </tr>
-            <tr>
-              <td><strong>Компоненты</strong></td>
-              <td>Header, Payload, Signature</td>
-              <td>Authorization Server, Resource Server, Client, Resource Owner</td>
-            </tr>
-            <tr>
-              <td><strong>Способ проверки</strong></td>
-              <td>Подпись проверяется локально с использованием секрета или публичного ключа</td>
-              <td>Access токен проверяется сервером ресурсов через сервер авторизации</td>
-            </tr>
-            <tr>
-              <td><strong>Механизм обновления</strong></td>
-              <td>Не предусмотрен — нужен refresh token или переаутентификация</td>
-              <td>Поддерживает refresh token по стандарту</td>
-            </tr>
-            <tr>
-              <td><strong>Безопасность</strong></td>
-              <td>Без шифрования payload виден (используйте HTTPS и шифрование)</td>
-              <td>Зависит от реализации, обычно безопаснее за счёт короткоживущих токенов и refresh-механизма</td>
-            </tr>
-            <tr>
-              <td><strong>Масштабируемость</strong></td>
-              <td>Высокая — сервер не хранит состояние</td>
-              <td>Средняя — требуется координация между клиентом и сервером авторизации</td>
-            </tr>
-            <tr>
-              <td><strong>Типичные сценарии</strong></td>
-              <td>Аутентификация пользователей в API, SSO, микросервисы</td>
-              <td>Авторизация сторонних приложений, вход через соцсети, OpenID Connect</td>
-            </tr>
-            <tr>
-              <td><strong>Примеры библиотек</strong></td>
-              <td>jsonwebtoken (Node.js), PyJWT (Python)</td>
-              <td>passport, Authlib, openid-client</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+            <div class="table-container">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>Критерий</th>
+                    <th>JWT</th>
+                    <th>OAuth 2.0</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Тип технологии</strong></td>
+                    <td>Стандарт формата токенов (RFC 7519)</td>
+                    <td>Протокол авторизации (RFC 6749)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Основное назначение</strong></td>
+                    <td>Передача и проверка информации о пользователе в виде
+                      токена</td>
+                    <td>Предоставление сторонним приложениям ограниченного
+                      доступа к ресурсам пользователя</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Тип данных</strong></td>
+                    <td>JSON-токен, содержащий claims (утверждения)</td>
+                    <td>Использует токены (обычно access и refresh), которые
+                      могут быть JWT или произвольной строкой</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Аутентификация или авторизация</strong></td>
+                    <td>Аутентификация (подтверждение личности)</td>
+                    <td>Авторизация (предоставление прав доступа)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Использование</strong></td>
+                    <td>Внутренняя авторизация и обмен данными между
+                      сервисами</td>
+                    <td>Доступ к сторонним API (Google, GitHub, Facebook и
+                      т.д.)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Компоненты</strong></td>
+                    <td>Header, Payload, Signature</td>
+                    <td>Authorization Server, Resource Server, Client, Resource
+                      Owner</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Способ проверки</strong></td>
+                    <td>Подпись проверяется локально с использованием секрета
+                      или публичного ключа</td>
+                    <td>Access токен проверяется сервером ресурсов через сервер
+                      авторизации</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Механизм обновления</strong></td>
+                    <td>Не предусмотрен — нужен refresh token или
+                      переаутентификация</td>
+                    <td>Поддерживает refresh token по стандарту</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Безопасность</strong></td>
+                    <td>Без шифрования payload виден (используйте HTTPS и
+                      шифрование)</td>
+                    <td>Зависит от реализации, обычно безопаснее за счёт
+                      короткоживущих токенов и refresh-механизма</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Масштабируемость</strong></td>
+                    <td>Высокая — сервер не хранит состояние</td>
+                    <td>Средняя — требуется координация между клиентом и
+                      сервером авторизации</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Типичные сценарии</strong></td>
+                    <td>Аутентификация пользователей в API, SSO,
+                      микросервисы</td>
+                    <td>Авторизация сторонних приложений, вход через соцсети,
+                      OpenID Connect</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Примеры библиотек</strong></td>
+                    <td>jsonwebtoken (Node.js), PyJWT (Python)</td>
+                    <td>passport, Authlib, openid-client</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
 
-    <section class="card" id="summary">
-      <h2>Итог</h2>
-      <p><strong>JWT</strong> — это формат токена. Он используется для безопасной передачи информации между сторонами и проверки подлинности данных.</p>
-      <p><strong>OAuth 2.0</strong> — это протокол, который использует токены (в том числе JWT) для делегирования прав доступа.</p>
-      <p>Таким образом, OAuth 2.0 может использовать JWT, но JWT может существовать и без OAuth. В связке они обеспечивают полную схему аутентификации и авторизации.</p>
-    </section>
-  </div>
+          <section class="card" id="summary">
+            <h2>Итог</h2>
+            <p><strong>JWT</strong> — это формат токена. Он используется для
+              безопасной передачи информации между сторонами и проверки
+              подлинности данных.</p>
+            <p><strong>OAuth 2.0</strong> — это протокол, который использует
+              токены (в том числе JWT) для делегирования прав доступа.</p>
+            <p>Таким образом, OAuth 2.0 может использовать JWT, но JWT может
+              существовать и без OAuth. В связке они обеспечивают полную схему
+              аутентификации и авторизации.</p>
+          </section>
+        </div>
 
-  <aside class="sidebar" role="complementary">
-    <div class="card">
-      <h3>Быстрая навигация</h3>
-      <nav aria-label="Боковая навигация">
-        <ul class="sidebar-nav">
-          <li><a href="#comparison-table">Таблица сравнения</a></li>
-          <li><a href="#summary">Итог</a></li>
-          <li><a href="jwt.html">Подробнее о JWT</a></li>
-          <li><a href="oauth.html">Подробнее о OAuth 2.0</a></li>
-        </ul>
-      </nav>
+        <aside class="sidebar" role="complementary">
+          <div class="card">
+            <h3>Быстрая навигация</h3>
+            <nav aria-label="Боковая навигация">
+              <ul class="sidebar-nav">
+                <li><a href="#comparison-table">Таблица сравнения</a></li>
+                <li><a href="#summary">Итог</a></li>
+                <li><a href="jwt.html">Подробнее о JWT</a></li>
+                <li><a href="oauth.html">Подробнее о OAuth 2.0</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="card">
+            <h3>Полезные ссылки</h3>
+            <ul class="resources">
+              <li><a href="https://jwt.io" target="_blank">JWT.io</a></li>
+              <li><a href="https://oauth.net/2/"
+                  target="_blank">OAuth.net</a></li>
+              <li><a href="https://auth0.com/docs" target="_blank">Auth0
+                  Docs</a></li>
+            </ul>
+          </div>
+        </aside>
+      </main>
+
+      <footer class="footer" role="contentinfo">
+        <div>© 2025 AuthMaster — Учебный проект. Все права защищены.</div>
+      </footer>
     </div>
-
-    <div class="card">
-      <h3>Полезные ссылки</h3>
-      <ul class="resources">
-        <li><a href="https://jwt.io" target="_blank">JWT.io</a></li>
-        <li><a href="https://oauth.net/2/" target="_blank">OAuth.net</a></li>
-        <li><a href="https://auth0.com/docs" target="_blank">Auth0 Docs</a></li>
-      </ul>
-    </div>
-  </aside>
-</main>
-
-<footer class="footer" role="contentinfo">
-  <div>© 2025 AuthMaster — Учебный проект. Все права защищены.</div>
-</footer>
-  </div>
-  <script src="js/main.js" defer></script>
-</body>
+    <script src="js/main.js" defer></script>
+  </body>
 </html>

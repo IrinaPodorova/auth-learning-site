@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
       burger.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
 
-    nav.querySelectorAll("a").forEach(link => {
+    nav.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         nav.classList.remove("open");
         burger.setAttribute("aria-expanded", "false");
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const form = document.querySelector(".subscribe-form[data-demo]");
   if (form) {
-    form.addEventListener("submit", e => {
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
       const emailInput = form.querySelector("#email");
       const email = emailInput?.value.trim();
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const currentPage = window.location.pathname.split("/").pop();
-  document.querySelectorAll(".header__nav a").forEach(link => {
+  document.querySelectorAll(".header__nav a").forEach((link) => {
     if (link.getAttribute("href") === currentPage) {
       link.classList.add("active");
     }
