@@ -133,6 +133,84 @@
             </div>
           </div>
         </section>
+
+        <section class="card" id="algorithms">
+          <h2>Алгоритмы подписи JWT</h2>
+          
+          <div class="algorithms">
+            <div class="algorithm">
+              <h3>HMAC + SHA256 (HS256)</h3>
+              <p><strong>Тип:</strong> Симметричный</p>
+              <p><strong>Описание:</strong> Использует один секретный ключ для подписи и проверки. Быстрый и эффективный, но требует безопасного обмена ключом.</p>
+              
+              <div class="algorithm-features">
+                <strong>Особенности:</strong>
+                <ul>
+                  <li>Один ключ для подписи и проверки</li>
+                  <li>Высокая производительность</li>
+                  <li>Требует безопасной передачи ключа</li>
+                  <li>Идеален для монолитных приложений</li>
+                </ul>
+              </div>
+              
+              <pre><code>// Пример использования
+const token = jwt.sign(payload, 'secret-key', {
+  algorithm: 'HS256'
+});</code></pre>
+            </div>
+            
+            <div class="algorithm">
+              <h3>RSASSA-PKCS1-v1_5 + SHA256 (RS256)</h3>
+              <p><strong>Тип:</strong> Асимметричный</p>
+              <p><strong>Описание:</strong> Использует приватный ключ для подписи и публичный для проверки. Более безопасен, но медленнее.</p>
+              
+              <div class="algorithm-features">
+                <strong>Особенности:</strong>
+                <ul>
+                  <li>Приватный ключ для подписи</li>
+                  <li>Публичный ключ для проверки</li>
+                  <li>Высокая безопасность</li>
+                  <li>Идеален для микросервисной архитектуры</li>
+                </ul>
+              </div>
+              
+              <pre><code>// Пример использования
+const token = jwt.sign(payload, privateKey, {
+  algorithm: 'RS256'
+});</code></pre>
+            </div>
+            
+            <div class="algorithm">
+              <h3>ECDSA + P-256 + SHA256 (ES256)</h3>
+              <p><strong>Тип:</strong> Асимметричный</p>
+              <p><strong>Описание:</strong> Использует эллиптические кривые. Обеспечивает высокий уровень безопасности при меньшем размере ключа.</p>
+              
+              <div class="algorithm-features">
+                <strong>Особенности:</strong>
+                <ul>
+                  <li>Меньший размер ключей</li>
+                  <li>Высокая безопасность</li>
+                  <li>Быстрее чем RSA при той же безопасности</li>
+                  <li>Современный стандарт</li>
+                </ul>
+              </div>
+              
+              <pre><code>// Пример использования
+const token = jwt.sign(payload, ecPrivateKey, {
+  algorithm: 'ES256'
+});</code></pre>
+            </div>
+          </div>
+          
+          <div class="note">
+            <h4>Рекомендации по выбору алгоритма:</h4>
+            <ul>
+              <li><strong>HS256</strong> — для внутренних сервисов и монолитных приложений</li>
+              <li><strong>RS256</strong> — для публичных API и микросервисов</li>
+              <li><strong>ES256</strong> — для современных приложений с высокими требованиями безопасности</li>
+            </ul>
+          </div>
+        </section>
       </div>
 
       <aside class="sidebar" role="complementary">
