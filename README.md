@@ -5,7 +5,7 @@
 
 ## Технологии
 - HTML5
-- CSS3 (Windi CSS)
+- CSS3 (Pico CSS)
 - JavaScript (для базового интерактива)
 
 ## Запуск
