@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AuthMaster — OAuth 2.0</title>
+
+  <link rel="icon" href="images/favicon.jpg">
+
+  <!-- Pico CSS -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <!-- ================= HEADER ================= -->
+
+  <header class="header container" role="banner">
+
+<div class="brand">
+  <a href="index.html" aria-label="AuthMaster — Главная">
+    <img src="images/logo.jpg"
+         alt="AuthMaster"
+         class="brand__logo">
+  </a>
+  <span class="brand__title">AuthMaster</span>
+</div>
+
+    <nav class="header__nav"
+         role="navigation"
+         aria-label="Главная навигация">
+
+      <a href="index.html">Главная</a>
+      <a href="jwt.html">JWT</a>
+      <a href="oauth.html" aria-current="page">OAuth 2.0</a>
+      <a href="comparison.html">Сравнение</a>
+      <a href="install.html">Установка</a>
+      <a href="api.html">API</a>
+      <a href="docs.html">Документация</a>
+      <a href="contact.html">Контакты</a>
+
+    </nav>
+
+    <button class="burger"
+            aria-label="Открыть меню"
+            aria-expanded="false">
+      <span class="burger__box" aria-hidden="true">
+        <span class="burger__bar"></span>
+        <span class="burger__bar"></span>
+        <span class="burger__bar"></span>
+      </span>
+    </button>
+
+  </header>
+
+  <!-- ================= MAIN ================= -->
+
+  <main class="page container" role="main">
+
+    <div class="main">
+
+      <article>
+        <h1>OAuth 2.0 — протокол делегированной авторизации</h1>
+
+        <figure>
+          <img src="images/oauth.webp"
+               alt="OAuth 2.0"
+               loading="lazy">
+        </figure>
+
+        <p>
+          OAuth 2.0 — это отраслевой стандартный протокол для авторизации,
+          который позволяет приложениям получать ограниченный доступ к
+          учетным записям пользователей на HTTP-сервисах.
+        </p>
+      </article>
+
+      <article id="video">
+        <h2><mark>Видеообзор OAuth 2.0</mark></h2>
+
+        <div class="video-container">
+          <iframe src="https://youtu.be/YmuiErodpwg"
+                  allowfullscreen>
+          </iframe>
+        </div>
+      </article>
+
+     <article id="roles">
+
+  <h2><mark>Роли в OAuth 2.0</mark></h2>
+
+  <div class="concepts">
+
+    <section class="card-item">
+      <h3>Resource Owner</h3>
+      <p>Пользователь, который предоставляет доступ к своим ресурсам.</p>
+    </section>
+
+    <section class="card-item">
+      <h3>Client</h3>
+      <p>Приложение, запрашивающее доступ от имени пользователя.</p>
+    </section>
+
+    <section class="card-item">
+      <h3>Authorization Server</h3>
+      <p>Аутентифицирует пользователя и выдает токены.</p>
+    </section>
+
+    <section class="card-item">
+      <h3>Resource Server</h3>
+      <p>Размещает защищенные ресурсы и принимает access token.</p>
+    </section>
+
+  </div>
+</article>
+
+     <article id="flows">
+
+  <h2><mark>Потоки авторизации</mark></h2>
+
+  <div class="concepts">
+
+    <section class="card-item">
+      <h3>Authorization Code + PKCE</h3>
+      <ul>
+        <li>Redirect пользователя</li>
+        <li>Аутентификация</li>
+        <li>Получение кода</li>
+        <li>Обмен кода на токен</li>
+      </ul>
+    </section>
+
+    <section class="card-item">
+      <h3>Client Credentials</h3>
+      <p>Используется для сервер-серверной аутентификации.</p>
+    </section>
+
+    <section class="card-item">
+      <h3>Implicit Flow</h3>
+      <p>Использовался для SPA, сейчас не рекомендуется.</p>
+    </section>
+
+    <section class="card-item">
+      <h3>Resource Owner Password</h3>
+      <p>Только для доверенных клиентов.</p>
+    </section>
+
+  </div>
+</article>
+
+      <article id="implementation">
+        <h2><mark>Пример реализации OAuth</mark></h2>
+
+<pre><code>// Формирование URL авторизации
+const authUrl = new URL('https://authorization-server.com/authorize');
+authUrl.searchParams.set('response_type', 'code');
+authUrl.searchParams.set('client_id', CLIENT_ID);
+authUrl.searchParams.set('redirect_uri', REDIRECT_URI);
+
+window.location.href = authUrl.toString();</code></pre>
+      </article>
+<article id="flows">
+
+  <h2><mark>Потоки авторизации (Grant Types)</mark></h2>
+
+  <div class="concepts">
+
+    <section class="card-item">
+      <h3>Authorization Code Flow</h3>
+      <p><strong>Использование:</strong> Веб и мобильные приложения</p>
+      <p><strong>Описание:</strong> Самый безопасный поток с получением кода авторизации.</p>
+
+      <div class="inner-card">
+        <strong>Шаги:</strong>
+        <ol>
+          <li>Redirect пользователя</li>
+          <li>Аутентификация и согласие</li>
+          <li>Получение authorization code</li>
+          <li>Обмен кода на access token</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="card-item">
+      <h3>Implicit Flow</h3>
+      <p><strong>Использование:</strong> Старые SPA</p>
+      <p><strong>Описание:</strong> Токен возвращается напрямую.</p>
+
+      <div class="inner-card">
+         Не рекомендуется для новых приложений.
+      </div>
+    </section>
+
+    <section class="card-item">
+      <h3>Resource Owner Password</h3>
+      <p><strong>Использование:</strong> Доверенные клиенты</p>
+      <p><strong>Описание:</strong> Пользователь передает логин и пароль приложению.</p>
+
+      <div class="inner-card">
+        Использовать только в контролируемой среде.
+      </div>
+    </section>
+
+    <section class="card-item">
+      <h3>Client Credentials</h3>
+      <p><strong>Использование:</strong> Сервер-сервер</p>
+      <p><strong>Описание:</strong> Аутентификация без пользователя.</p>
+    </section>
+
+    <section class="card-item">
+      <h3>Authorization Code + PKCE</h3>
+      <p><strong>Использование:</strong> Мобильные и SPA</p>
+      <p><strong>Описание:</strong> Улучшенная версия Authorization Code.</p>
+
+      <div class="inner-card">
+         PKCE добавляет защиту от перехвата кода.
+      </div>
+    </section>
+
+  </div>
+
+</article>
+<article id="tokens">
+
+  <h2><mark>Токены в OAuth 2.0</mark></h2>
+
+  <div class="concepts">
+
+    <section class="card-item">
+      <h3>Access Token</h3>
+      <ul>
+        <li>Короткое время жизни</li>
+        <li>Передается в Authorization: Bearer</li>
+        <li>Может быть JWT</li>
+      </ul>
+    </section>
+
+    <section class="card-item">
+      <h3>Refresh Token</h3>
+      <ul>
+        <li>Долгоживущий</li>
+        <li>Используется для обновления access token</li>
+        <li>Может быть отозван</li>
+      </ul>
+    </section>
+
+    <section class="card-item">
+      <h3>ID Token</h3>
+      <ul>
+        <li>Содержит данные пользователя</li>
+        <li>Используется для аутентификации</li>
+      </ul>
+    </section>
+
+  </div>
+</article>
+
+<article id="implementation">
+
+  <h2><mark>Реализация OAuth 2.0</mark></h2>
+
+  <div class="concepts">
+
+    <section class="card-item">
+      <h3>Регистрация приложения</h3>
+<pre><code>{
+  "client_id": "...",
+  "redirect_uri": "https://site.com/callback",
+  "scope": "read profile email"
+}</code></pre>
+    </section>
+
+    <section class="card-item">
+      <h3>Инициирование авторизации</h3>
+<pre><code>authUrl.searchParams.set('response_type', 'code');
+authUrl.searchParams.set('client_id', CLIENT_ID);
+authUrl.searchParams.set('redirect_uri', REDIRECT_URI);</code></pre>
+    </section>
+
+    <section class="card-item">
+      <h3>Использование Access Token</h3>
+<pre><code>fetch('/api/user', {
+  headers: {
+    'Authorization': `Bearer ${accessToken}`
+  }
+});</code></pre>
+    </section>
+
+  </div>
+</article>
+
+<article id="security">
+
+  <h2><mark>Безопасность OAuth 2.0</mark></h2>
+
+  <div class="concepts">
+
+    <section class="card-item">
+      <h3>CSRF Protection</h3>
+      <p>Используйте параметр state.</p>
+    </section>
+
+    <section class="card-item">
+      <h3>PKCE</h3>
+      <p>Обязательно для мобильных и SPA.</p>
+    </section>
+
+    <section class="card-item">
+      <h3>redirect_uri validation</h3>
+      <p>Строго проверяйте соответствие зарегистрированному URI.</p>
+    </section>
+
+    <section class="card-item">
+      <h3>Минимальный scope</h3>
+      <p>Запрашивайте только необходимый доступ.</p>
+    </section>
+
+    <section class="card-item">
+      <h3>HTTPS</h3>
+      <p>Всегда используйте защищенное соединение.</p>
+    </section>
+
+  </div>
+</article>
+    </div>
+
+    <!-- ================= SIDEBAR ================= -->
+
+   <aside class="sidebar" role="complementary">
+
+  <article>
+    <h3>Быстрая навигация</h3>
+    <nav aria-label="Боковая навигация">
+      <ul>
+        <li><a href="#video">Видеообзор</a></li>
+        <li><a href="#roles">Роли в OAuth</a></li>
+        <li><a href="#flows">Потоки авторизации</a></li>
+        <li><a href="#tokens">Токены</a></li>
+        <li><a href="#implementation">Реализация</a></li>
+        <li><a href="#providers">Популярные провайдеры</a></li>
+        <li><a href="security.html#oauth-security">Безопасность OAuth</a></li>
+        <li><a href="comparison.html">Сравнение с JWT</a></li>
+      </ul>
+    </nav>
+  </article>
+
+  <article>
+    <h3>Полезные ресурсы</h3>
+    <ul>
+      <li>
+        <a href="https://oauth.net/2/" target="_blank">
+          OAuth.net — официальный сайт
+        </a>
+      </li>
+      <li>
+        <a href="https://tools.ietf.org/html/rfc6749" target="_blank">
+          RFC 6749 — Спецификация OAuth 2.0
+        </a>
+      </li>
+      <li>
+        <a href="https://openid.net/connect/" target="_blank">
+          OpenID Connect — официальный сайт
+        </a>
+      </li>
+      <li>
+        <a href="https://auth0.com/docs/protocols/oauth2" target="_blank">
+          Документация Auth0 по OAuth 2.0
+        </a>
+      </li>
+    </ul>
+  </article>
+
+  <article>
+  <h3>Практические примеры</h3>
+  <p>
+    Изучите готовые примеры реализации OAuth 2.0
+    в разделе <a href="install.html">Установка</a>.
+  </p>
+  <a href="install.html"
+     role="button"
+     class="contrast">
+     Перейти к примерам
+  </a>
+</article>
+  
+
+</aside>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    © 2025 AuthMaster — Учебный проект. Все права защищены.
+  </footer>
+
+</div>
+
+<script src="js/main.js" defer></script>
+
+</body>
+</html>

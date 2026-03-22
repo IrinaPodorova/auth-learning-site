@@ -1,0 +1,311 @@
+/* ===================================
+   AuthMaster — Responsive Styles
+   Основа: Pico.css
+=================================== */
+:root {
+
+  /* Твоя система */
+  --color-primary: #111111;
+  --color-accent: #dff5fc;
+  --color-border: #e5e7eb;
+  --radius-md: 12px;
+
+  /* Переопределяем Pico */
+  --pico-primary: #111111;
+  --pico-primary-hover: #333333;
+  --pico-primary-focus: rgba(17, 17, 17, 0.25);
+
+  --pico-background-color: #f9fafb;
+  --pico-card-background-color: #ffffff;
+  --pico-muted-color: #6b7280;
+
+  --pico-border-color: #e5e7eb;
+}
+
+
+/* ================= BASE ================= */
+
+body {
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.main,
+.sidebar {
+  min-width: 260px;
+}
+
+
+mark {
+  background-color: var(--color-accent);
+}
+
+.header {
+  border-bottom: 1px solid var(--color-border);
+}
+/* ================= CODE BLOCKS ================= */
+
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+code {
+  word-break: break-word;
+}
+
+/* ================= RESPONSIVE TABLE ================= */
+
+figure {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+}
+
+th {
+  background: #111;
+  color: white;
+}
+
+/* ================= VIDEO ================= */
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+}
+
+.video-container iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* ================= WRAPPER ================= */
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.9rem;
+}
+
+.wrapper main {
+  flex: 1;
+}
+
+/* ================= HEADER ================= */
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #e5e7eb; 
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand__title {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.brand__logo {
+  width: 150px;
+  height: auto;
+}
+
+/* ================= NAVIGATION ================= */
+
+.header__nav {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.header__nav a[aria-current="page"] {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;   /* делает овал */
+  text-decoration: none;
+}
+.header__nav a {
+  white-space: nowrap;
+}
+
+/* ================= BURGER ================= */
+
+.burger {
+  display: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.burger__box {
+  width: 22px;
+  height: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.burger__bar {
+  height: 2px;
+  background: #0f172a;
+  border-radius: 2px;
+}
+
+
+/* ================= MAIN LAYOUT ================= */
+
+.page {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem 1rem;
+}
+
+/* Desktop layout */
+@media (min-width: 992px) {
+
+  .page {
+    grid-template-columns: minmax(0,3fr) minmax(260px,1fr);
+  }
+
+}
+
+/* ================= GRID BLOCKS ================= */
+
+/* ================= GRID ================= */
+
+.concepts,
+.use-cases,
+.mistakes,
+.next-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.concepts {
+  margin-top: 2rem;
+}
+
+/* ================= UNIVERSAL CARD ================= */
+
+.card-item {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-width: 0;
+}
+
+.card-item h2,
+.card-item h3,
+.card-item p {
+  hyphens: none;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.card-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+.inner-card {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid var(--color-border);
+}
+
+input[type="checkbox"] {
+  accent-color: #111111;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+/* ===== Disable automatic hyphenation ===== */
+
+
+
+
+.sidebar article ul {
+  text-align: left;
+  padding-left: 1rem;   /* аккуратный отступ */
+  margin-left: 0;
+}
+
+.sidebar article ul li {
+  text-align: left;
+}
+/* ================= MOBILE ================= */
+
+@media (max-width: 767px) {
+
+  .burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header__nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 3rem;
+  }
+
+  .header__nav.active {
+    display: flex;
+  }
+}
+
+/* ================= TABLET & UP ================= */
+
+@media (min-width: 768px) {
+
+  .header__nav {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+  }
+
+  .burger {
+    display: none !important;
+  }
+}
+

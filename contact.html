@@ -1,302 +1,263 @@
 <!DOCTYPE html>
-<html lang="ru">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>AuthMaster — Контакты</title>
-        <link rel="icon" href="images/favicon.jpg">
-        <script
-            src="https://cdn.jsdelivr.net/npm/windicss-runtime@3.1.0/dist/windicss-runtime.min.js"
-            defer></script>
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body>
-        <div class="wrapper">
-            <header class="header" role="banner">
-                <div class="brand">
-                    <img src="images/logo.jpg" alt="AuthMaster logo"
-                        style="height:48px">
-                    <div class="brand__title"> AuthMaster — учебный проект</div>
-                </div>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AuthMaster — Контакты</title>
 
-                <nav class="header__nav" role="navigation"
-                    aria-label="Главная навигация">
-                    <a href="index.html">Главная</a>
-                    <a href="jwt.html">JWT</a>
-                    <a href="oauth.html">OAuth 2.0</a>
-                    <a href="comparison.html">Сравнение</a>
-                    <a href="install.html">Установка</a>
-                    <a href="api.html">API</a>
-                    <a href="docs.html">Документация</a>
-                    <a href="contact.html" class="active">Контакты</a>
-                </nav>
+  <link rel="icon" href="images/favicon.jpg">
 
-                <button class="burger" aria-label="Открыть меню"
-                    aria-expanded="false">
-                    <span class="burger__box" aria-hidden="true">
-                        <span class="burger__bar"></span>
-                        <span class="burger__bar"></span>
-                        <span class="burger__bar"></span>
-                    </span>
-                </button>
-            </header>
+  <!-- Pico CSS -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 
-            <main class="page" role="main">
-                <div class="main">
-                    <section class="card" aria-labelledby="page-title">
-                        <h1 id="page-title" class="page-title">Свяжитесь со
-                            мной</h1>
-                        <p>Есть вопросы по использованию AuthMaster? Нужна
-                            помощь с интеграцией? Хотите предложить улучшения? Я
-                            всегда рада обратной связи!</p>
-                        <p><strong>AuthMaster — это мой учебный проект, который
-                                я разрабатываю самостоятельно.</strong></p>
-                    </section>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
 
-                    <section class="card" id="contact-methods">
-                        <h2>Способы связи</h2>
-                        <div class="contact-grid">
-                            <div class="contact-card">
-                                <h3>Электронная почта</h3>
-                                <p>Напишите мне на почту с вашими вопросами или
-                                    предложениями</p>
-                                <a href="mailto:irina.podorova@example.com"
-                                    class="button">irina.podorova@example.com</a>
-                            </div>
+<body>
 
-                            <div class="contact-card">
-                                <h3>GitHub</h3>
-                                <p>Сообщайте о багах, предлагайте улучшения
-                                    через Issues в репозитории</p>
-                                <a
-                                    href="https://github.com/IrinaPodorova/auth-learning-site"
-                                    target="_blank" class="button">Репозиторий
-                                    проекта</a>
-                            </div>
+<div class="wrapper">
 
-                            <div class="contact-card">
-                                <h3>Техническая поддержка</h3>
-                                <p>Получите помощь по интеграции и решению
-                                    технических проблем</p>
-                                <a href="#contact-form" class="button">Запросить
-                                    поддержку</a>
-                            </div>
-                        </div>
-                    </section>
+<header class="header container" role="banner">
 
-                    <section class="card" id="contact-form">
-                        <h2>Форма обратной связи</h2>
-                        <div class="contact-form">
-                            <form id="feedback-form">
-                                <div class="form-group">
-                                    <label for="name" class="form-label">Ваше
-                                        имя</label>
-                                    <input type="text" id="name"
-                                        class="form-input"
-                                        placeholder="Иван Иванов" required>
-                                </div>
+<div class="brand">
+  <a href="index.html" aria-label="AuthMaster — Главная">
+    <img src="images/logo.jpg"
+         alt="AuthMaster"
+         class="brand__logo">
+  </a>
+  <span class="brand__title">AuthMaster</span>
+</div>
 
-                                <div class="form-group">
-                                    <label for="email" class="form-label">Email
-                                        для ответа</label>
-                                    <input type="email" id="email"
-                                        class="form-input"
-                                        placeholder="your@email.com" required>
-                                </div>
+  <nav class="header__nav" role="navigation" aria-label="Главная навигация">
+    <a href="index.html">Главная</a>
+    <a href="jwt.html">JWT</a>
+    <a href="oauth.html">OAuth 2.0</a>
+    <a href="comparison.html">Сравнение</a>
+    <a href="install.html">Установка</a>
+    <a href="api.html">API</a>
+    <a href="docs.html">Документация</a>
+    <a href="contact.html" aria-current="page">Контакты</a>
+  </nav>
 
-                                <div class="form-group">
-                                    <label for="subject" class="form-label">Тема
-                                        сообщения</label>
-                                    <select id="subject" class="form-input"
-                                        required>
-                                        <option value>Выберите тему</option>
-                                        <option value="bug-report">Сообщение об
-                                            ошибке</option>
-                                        <option
-                                            value="feature-request">Предложение
-                                            по улучшению</option>
-                                        <option value="integration-help">Помощь
-                                            с интеграцией</option>
-                                        <option value="documentation">Вопрос по
-                                            документации</option>
-                                        <option value="other">Другое</option>
-                                    </select>
-                                </div>
+  <button class="burger" aria-label="Открыть меню" aria-expanded="false">
+    <span class="burger__box">
+      <span class="burger__bar"></span>
+      <span class="burger__bar"></span>
+      <span class="burger__bar"></span>
+    </span>
+  </button>
 
-                                <div class="form-group">
-                                    <label for="message"
-                                        class="form-label">Сообщение</label>
-                                    <textarea id="message" class="form-textarea"
-                                        placeholder="Опишите вашу проблему или предложение..."
-                                        required></textarea>
-                                </div>
+</header>
 
-                                <div class="form-group">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" required>
-                                        Я согласен с обработкой персональных
-                                        данных
-                                    </label>
-                                </div>
+<main class="page container" role="main">
 
-                                <button type="submit"
-                                    class="button button-primary">Отправить
-                                    сообщение</button>
-                            </form>
-                        </div>
-                    </section>
+  <div class="main">
 
-                    <section class="card" id="about-author">
-                        <h2>Об авторе проекта</h2>
-                        <div class="author-profile">
-                            <div class="author-info">
-                                <h3>Ирина Подорова</h3>
-                                <p>Я разрабатываю этот учебный проект
-                                    самостоятельно, чтобы углубить свои знания в
-                                    области аутентификации и авторизации, а
-                                    также поделиться этим опытом с другими.</p>
-                                <p>Проект охватывает ключевые технологии: JWT,
-                                    OAuth 2.0, а также их практическую
-                                    реализацию и интеграцию.</p>
-                                <div class="social-links">
-                                    <a href="https://github.com/IrinaPodorova"
-                                        class="social-link">GitHub</a>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+    <!-- HERO -->
+    <article>
+      <h1>Свяжитесь со мной</h1>
+      <p>
+        Есть вопросы по использованию AuthMaster?
+        Нужна помощь с интеграцией?
+        Хотите предложить улучшения?
+      </p>
+      <p><strong>AuthMaster — мой учебный проект,
+      который я разрабатываю самостоятельно.</strong></p>
+    </article>
 
-                    <section class="card faq-contact" id="faq-contact">
-                        <h2>Частые вопросы</h2>
-                        <div class="faq-list">
-                            <div class="faq-item">
-                                <div class="faq-question"
-                                    onclick="toggleFAQ(this)">
-                                    Как быстро я получу ответ на свое сообщение?
-                                </div>
-                                <div class="faq-answer">
-                                    <p>Я стараюсь отвечать на все сообщения в
-                                        течение 24 часов. Технические вопросы
-                                        могут потребовать дополнительного
-                                        времени для исследования.</p>
-                                </div>
-                            </div>
 
-                            <div class="faq-item">
-                                <div class="faq-question"
-                                    onclick="toggleFAQ(this)">
-                                    Могу ли я получить помощь с интеграцией в
-                                    моем проекте?
-                                </div>
-                                <div class="faq-answer">
-                                    <p>Да, я предоставляю консультации по
-                                        интеграции AuthMaster в ваши проекты.
-                                        Опишите вашу задачу в форме обратной
-                                        связи, и я свяжусь с вами.</p>
-                                </div>
-                            </div>
+    <!-- CONTACT METHODS -->
+    <article id="contact-methods">
 
-                            <div class="faq-item">
-                                <div class="faq-question"
-                                    onclick="toggleFAQ(this)">
-                                    Предоставляете ли вы коммерческую поддержку?
-                                </div>
-                                <div class="faq-answer">
-                                    <p>AuthMaster — это учебный проект с
-                                        открытым исходным кодом. Я не
-                                        предоставляю коммерческую поддержку, но
-                                        активно помогаю сообществу.</p>
-                                </div>
-                            </div>
+  <h2><mark>Способы связи</mark></h2>
 
-                            <div class="faq-item">
-                                <div class="faq-question"
-                                    onclick="toggleFAQ(this)">
-                                    Как я могу внести вклад в проект?
-                                </div>
-                                <div class="faq-answer">
-                                    <p>Я рада любым contributions! Вы
-                                        можете:</p>
-                                    <ul>
-                                        <li>Сообщать об ошибках через GitHub
-                                            Issues</li>
-                                        <li>Предлагать новые функции</li>
-                                        <li>Улучшать документацию</li>
-                                        <li>Создавать pull requests с
-                                            исправлениями</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+  <div class="concepts">
 
-                <aside class="sidebar" role="complementary">
-                    <div class="card">
-                        <h3>Быстрая навигация</h3>
-                        <nav aria-label="Боковая навигация">
-                            <ul class="sidebar-nav">
-                                <li><a href="#contact-methods">Способы
-                                        связи</a></li>
-                                <li><a href="#contact-form">Форма обратной
-                                        связи</a></li>
-                                <li><a href="#about-author">Об авторе</a></li>
-                                <li><a href="#faq-contact">Частые
-                                        вопросы</a></li>
-                            </ul>
-                        </nav>
-                    </div>
+    <section class="card-item">
+      <h3>Электронная почта</h3>
+      <p>Напишите мне с вашими вопросами или предложениями.</p>
 
-                    <div class="card">
-                        <h3>Ресурсы проекта</h3>
-                        <ul class="resources">
-                            <li><a href="docs.html">Документация</a></li>
-                            <li><a href="install.html">Установка и
-                                    настройка</a></li>
-                            <li><a href="api.html">API Reference</a></li>
-                            <li><a
-                                    href="https://github.com/IrinaPodorova/auth-learning-site"
-                                    target="_blank">GitHub репозиторий</a></li>
-                        </ul>
-                    </div>
+      <a href="mailto:irina.podorova@example.com"
+         role="button"
+         class="contrast">
+        irina.podorova@example.com
+      </a>
+    </section>
 
-                    <div class="card">
-                        <h3>Статус системы</h3>
-                        <div class="status-item">
-                            <span class="status-dot online"></span>
-                            <span>API - Работает</span>
-                        </div>
-                        <div class="status-item">
-                            <span class="status-dot online"></span>
-                            <span>Документация - Актуальна</span>
-                        </div>
-                        <div class="status-item">
-                            <span class="status-dot online"></span>
-                            <span>Поддержка - Доступна</span>
-                        </div>
-                    </div>
-                </aside>
-            </main>
+    <section class="card-item">
+      <h3>GitHub</h3>
+      <p>Сообщайте о багах и предлагайте улучшения через Issues.</p>
 
-            <footer class="footer" role="contentinfo">
-                <div>© 2025 AuthMaster — Учебный проект Ирины Подоровой. Все
-                    права защищены.</div>
-            </footer>
-        </div>
+      <a href="https://github.com/IrinaPodorova/auth-learning-site"
+         target="_blank"
+         rel="noopener"
+         role="button"
+         class="contrast">
+        Репозиторий проекта
+      </a>
+    </section>
 
-        <script>
-    function toggleFAQ(element) {
-      const answer = element.nextElementSibling;
-      answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
-    }
-    
-    
-    document.getElementById('feedback-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Спасибо за ваше сообщение! Я свяжусь с вами в ближайшее время.');
-      this.reset();
-    });
-  </script>
-        <script src="js/main.js" defer></script>
-    </body>
+  </div>
+
+</article>
+
+
+    <!-- CONTACT FORM -->
+   <article id="contact-form">
+  <h2><mark>Форма обратной связи</mark></h2>
+
+  <form id="feedback-form">
+
+    <div class="grid">
+
+      <label for="name">
+        Ваше имя
+        <input type="text"
+               id="name"
+               name="name"
+               autocomplete="name"
+               placeholder="Иван Иванов"
+               required>
+      </label>
+
+      <label for="email">
+        Email для ответа
+        <input type="email"
+               id="email"
+               name="email"
+               autocomplete="email"
+               placeholder="your@email.com"
+               required>
+      </label>
+
+    </div>
+
+    <label for="subject">
+      Тема сообщения
+      <select id="subject" name="subject" required>
+        <option value="">Выберите тему</option>
+        <option value="bug">Сообщение об ошибке</option>
+        <option value="feature">Предложение по улучшению</option>
+        <option value="integration">Помощь с интеграцией</option>
+        <option value="documentation">Вопрос по документации</option>
+        <option value="other">Другое</option>
+      </select>
+    </label>
+
+    <label for="message">
+      Сообщение
+      <textarea id="message"
+                name="message"
+                placeholder="Опишите вашу проблему или предложение..."
+                rows="5"
+                required></textarea>
+    </label>
+
+    <label>
+      <input type="checkbox"
+             name="agreement"
+             role="switch"
+             required>
+      Я согласен с обработкой персональных данных
+    </label>
+
+    <button type="submit" class="contrast">
+      Отправить сообщение
+    </button>
+
+  </form>
+</article>
+
+
+    <!-- ABOUT AUTHOR -->
+    <article id="about-author">
+      <h2><mark>Об авторе проекта</mark></h2>
+
+      <h3>Ирина Подорова</h3>
+      <p>
+        Я развиваю этот проект, чтобы углубить знания
+        в области аутентификации и авторизации
+        и поделиться опытом с другими.
+      </p>
+
+      <a href="https://github.com/IrinaPodorova"
+         target="_blank"
+         role="button"
+         class="outline">
+        GitHub профиль
+      </a>
+
+    </article>
+
+
+    <!-- FAQ -->
+    <article id="faq-contact">
+      <h2><mark>Частые вопросы</mark></h2>
+
+      <details>
+        <summary><strong>Как быстро я получу ответ?</strong></summary>
+        <p>Я стараюсь отвечать в течение 24 часов.</p>
+      </details>
+
+      <details>
+        <summary><strong>Помогаете ли с интеграцией?</strong></summary>
+        <p>Да, опишите задачу в форме — я свяжусь с вами.</p>
+      </details>
+
+      <details>
+        <summary><strong>Есть ли коммерческая поддержка?</strong></summary>
+        <p>AuthMaster — учебный open-source проект.</p>
+      </details>
+
+    </article>
+
+  </div>
+
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <article>
+      <h3>Быстрая навигация</h3>
+      <ul>
+        <li><a href="#contact-methods">Способы связи</a></li>
+        <li><a href="#contact-form">Форма</a></li>
+        <li><a href="#about-author">Об авторе</a></li>
+        <li><a href="#faq-contact">FAQ</a></li>
+      </ul>
+    </article>
+
+    <article>
+      <h3>Ресурсы проекта</h3>
+      <ul>
+        <li><a href="docs.html">Документация</a></li>
+        <li><a href="install.html">Установка</a></li>
+        <li><a href="api.html">API</a></li>
+      </ul>
+    </article>
+
+  </aside>
+
+</main>
+
+<footer class="footer container">
+  © 2025 AuthMaster — Учебный проект Ирины Подоровой
+</footer>
+
+</div>
+
+<script>
+document.getElementById('feedback-form')
+.addEventListener('submit', function(e) {
+  e.preventDefault();
+  alert('Спасибо! Я свяжусь с вами в ближайшее время.');
+  this.reset();
+});
+</script>
+
+<script src="js/main.js" defer></script>
+
+</body>
 </html>
